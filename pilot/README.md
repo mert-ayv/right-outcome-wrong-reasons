@@ -131,8 +131,10 @@ src/evaluate.py       MLX evaluation (accuracy, CF, early answering, token lengt
 src/grpo.py           MLX outcome-reward GRPO with LoRA
 src/analyze.py        pre-registered metrics from per-item records (CF_joint, bootstrap, verdict)
 run_pilot.sh          MLX pipeline (base eval, GRPO, checkpoint evals)
-colab/pilot_t4c.py    Colab T4 reruns with per-item logging (base, GRPO, SFT jobs)
+colab/h1_rerun_t4.ipynb  Colab notebook for the pre-registered reruns (open in Colab, T4, run cells)
+colab/pilot_t4c.py    script the rerun notebook downloads: per-item logging, base/GRPO/SFT jobs
 colab/pilot_t4b.py    Colab T4 run that produced the exploratory results (Unsloth + TRL)
+colab/h1_pilot*.ipynb older notebooks (superseded: no per-item logging, own-correct CF only)
 colab/pilot_t4.py     Colab T4 base evaluation (150-step version, stopped after base eval)
 colab/*.ipynb         notebook versions; make_notebook*.py generate them
 data/                 generated train/test sets

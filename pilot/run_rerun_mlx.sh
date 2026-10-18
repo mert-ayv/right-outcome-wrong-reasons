@@ -12,7 +12,7 @@ mkdir -p $REC logs
 [ -d $RUN/step_60 ] || $PY src/grpo.py --model $MODEL --train data/train.jsonl --out $RUN --steps 60 \
     --prompts_per_step 4 --group_size 8 --max_tokens 400 --micro_batch 1 --num_layers 12 \
     --rank 16 --lora_scale 2.0 --lr 2e-5 --save_every 30 --seed 1
-for STEP in 30 60; do
+for STEP in 60 30; do
   [ -f $REC/mlx-grpo-s1-step$STEP.jsonl ] || $PY src/eval_records.py --model $MODEL --adapter $RUN/step_$STEP \
       --test data/test.jsonl --out $REC/mlx-grpo-s1-step$STEP.jsonl --batch_size 8
 done
