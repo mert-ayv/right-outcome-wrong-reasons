@@ -36,20 +36,37 @@ for all jobs: run them one at a time and download the zip after each.
 Analyse locally: `python -I src/analyze.py --records <unzipped>/records --out analysis.json`.
 """)
 
+md("""
+## 1. Save everything to Google Drive
+
+Mounts Drive (Google asks once for access) and points `/content/h1_rerun` to
+`MyDrive/h1_rerun`, so records, summaries and checkpoints survive a dropped session. After a
+disconnect, reconnect and run all cells again: finished jobs and evaluations are skipped and
+training resumes from the last checkpoint.
+""")
+
+code("""
+from google.colab import drive
+drive.mount('/content/drive')
+!mkdir -p /content/drive/MyDrive/h1_rerun && rm -rf /content/h1_rerun && ln -sfn /content/drive/MyDrive/h1_rerun /content/h1_rerun && ls -la /content/h1_rerun
+""")
+
+md("## 2. Setup")
+
 code(f"""
 !pip install -q unsloth vllm vllm-bnb-plugin 2>&1 | tail -2
 !wget -q -N {RAW}/pilot_t4c.py {RAW}/pilot_data.zip && ls -la pilot_t4c.py pilot_data.zip
 !nvidia-smi --query-gpu=name,memory.total --format=csv
 """)
 
-md("## Jobs (one cell each; each runs in a fresh process so GPU memory is released)")
+md("## 3. Jobs (one cell each; each runs in a fresh process so GPU memory is released)")
 
 code(f"!{ENV} python -u pilot_t4c.py --job base 2>&1 | grep -E 'RESULT|Error|rror:' | grep -v WARNING")
 code(f"!{ENV} python -u pilot_t4c.py --job grpo --seed 1 2>&1 | grep -E 'RESULT|TRAIN DONE|Error|rror:' | grep -v WARNING")
 code(f"!{ENV} python -u pilot_t4c.py --job grpo --seed 2 2>&1 | grep -E 'RESULT|TRAIN DONE|Error|rror:' | grep -v WARNING")
 code(f"!{ENV} python -u pilot_t4c.py --job sft --seed 1 2>&1 | grep -E 'RESULT|TRAIN DONE|Error|rror:' | grep -v WARNING")
 
-md("## Download the records (run after any job)")
+md("## 4. Download the records (optional; everything is also on Drive)")
 
 code("""
 !cat /content/h1_rerun/summaries.jsonl

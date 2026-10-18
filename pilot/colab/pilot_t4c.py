@@ -10,6 +10,10 @@ outputs with parse status) to OUT/records/<tag>.jsonl and a summary line to OUT/
 then refreshes OUT.zip so results can be downloaded at any point. Metrics that compare two models
 (CF on jointly correct items, bootstrap) are computed offline by ../src/analyze.py.
 
+Resumable: a job whose final records exist is skipped, finished evaluations are skipped, and
+training resumes from the last checkpoint in OUT/<run>/. Point OUT at Google Drive (the notebook
+symlinks /content/h1_rerun to Drive) so a dropped session loses at most one checkpoint interval.
+
 Run with: UNSLOTH_VLLM_NO_FLASHINFER=1 VLLM_USE_FLASHINFER_SAMPLER=0 python -u pilot_t4c.py --job ...
 """
 import argparse
@@ -28,6 +32,10 @@ args_cli = ap.parse_args()
 
 OUT = "/content/h1_rerun"
 os.makedirs(f"{OUT}/records", exist_ok=True)
+_final = "base" if args_cli.job == "base" else f"{args_cli.job}-s{args_cli.seed}-step{args_cli.steps}"
+if os.path.exists(f"{OUT}/records/{_final}.jsonl"):
+    print(f"SKIP {_final}: records already exist", flush=True)
+    raise SystemExit(0)
 with zipfile.ZipFile("pilot_data.zip") as z:
     z.extractall("data")
 train = [json.loads(l) for l in open("data/train.jsonl")]
@@ -75,6 +83,9 @@ def refresh_zip():
 
 
 def evaluate(tag, lora=None, trunc_n=100):
+    if os.path.exists(f"{OUT}/records/{tag}.jsonl"):
+        print(f"SKIP evaluation {tag}: records already exist", flush=True)
+        return
     t0 = time.time()
     flat, index = [], []
     for k, r in enumerate(test):
@@ -164,6 +175,10 @@ else:
             optim="adamw_8bit", report_to="none", max_length=1700)
         trainer = SFTTrainer(model=model, processing_class=tokenizer, args=cfg, train_dataset=ds,
                              callbacks=[EvalOnSave()])
+    import glob
+    resume = bool(glob.glob(f"{OUT}/{run}/checkpoint-*"))
+    if resume:
+        print("RESUME from last checkpoint in", f"{OUT}/{run}", flush=True)
     t0 = time.time()
-    trainer.train()
+    trainer.train(resume_from_checkpoint=resume)
     print("TRAIN DONE", run, round((time.time() - t0) / 60, 1), "min", flush=True)
