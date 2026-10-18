@@ -61,10 +61,10 @@ code(f"""
 
 md("## 3. Jobs (one cell each; each runs in a fresh process so GPU memory is released)")
 
-code(f"!{ENV} python -u pilot_t4c.py --job base 2>&1 | grep -E 'RESULT|Error|rror:' | grep -v WARNING")
-code(f"!{ENV} python -u pilot_t4c.py --job grpo --seed 1 2>&1 | grep -E 'RESULT|TRAIN DONE|Error|rror:' | grep -v WARNING")
-code(f"!{ENV} python -u pilot_t4c.py --job grpo --seed 2 2>&1 | grep -E 'RESULT|TRAIN DONE|Error|rror:' | grep -v WARNING")
-code(f"!{ENV} python -u pilot_t4c.py --job sft --seed 1 2>&1 | grep -E 'RESULT|TRAIN DONE|Error|rror:' | grep -v WARNING")
+code(f"!{ENV} python -u pilot_t4c.py --job base 2>&1 | grep -E 'RESULT|SKIP|RESUME|Error|rror:' | grep -v WARNING")
+code(f"!{ENV} python -u pilot_t4c.py --job grpo --seed 1 2>&1 | grep -E 'RESULT|TRAIN DONE|SKIP|RESUME|Error|rror:' | grep -v WARNING")
+code(f"!{ENV} python -u pilot_t4c.py --job grpo --seed 2 2>&1 | grep -E 'RESULT|TRAIN DONE|SKIP|RESUME|Error|rror:' | grep -v WARNING")
+code(f"!{ENV} python -u pilot_t4c.py --job sft --seed 1 2>&1 | grep -E 'RESULT|TRAIN DONE|SKIP|RESUME|Error|rror:' | grep -v WARNING")
 
 md("## 4. Download the records (optional; everything is also on Drive)")
 
