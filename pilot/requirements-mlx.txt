@@ -1,0 +1,11 @@
+# Apple Silicon (MLX) environment used for data generation, the MLX evaluation and the MLX GRPO trainer.
+# Python 3.12. Install: uv venv --python 3.12 .venv && uv pip install --python .venv/bin/python -r requirements-mlx.txt
+mlx==0.32.4
+mlx-lm==0.32.2
+transformers==5.20.1
+numpy==2.5.4
+# Needed by the vendored OpenExempt framework (data generation only)
+inflect==7.5.0
+langchain-core==1.6.12
+pydantic==2.14.1
+rapidfuzz==3.14.6

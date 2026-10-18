@@ -1,0 +1,243 @@
+{
+ "summary": {
+  "n": 8,
+  "acc": 0.0,
+  "no_answer_rate": 0.625,
+  "twin_acc": 0.0,
+  "cf_operative_changed": NaN,
+  "cf_invariant_kept": NaN,
+  "cf_balanced": NaN,
+  "cf_pairs": [
+   0,
+   0
+  ],
+  "trunc_agree_0": 0.0,
+  "trunc_agree_50": 0.0,
+  "tokens_right": 0.0,
+  "tokens_wrong": 183.125,
+  "seconds": 37,
+  "model": "mlx-community/Qwen3-1.7B-4bit",
+  "adapter": null
+ },
+ "records": [
+  {
+   "id": "ae-1000",
+   "pred": [
+    "Arizona",
+    "Illinois",
+    "Pennsylvania",
+    "Wisconsin"
+   ],
+   "gold": [
+    "Federal",
+    "Oregon"
+   ],
+   "correct": false,
+   "tokens": 221,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": null,
+     "gold": [
+      "Federal",
+      "Oregon"
+     ],
+     "correct": false
+    },
+    {
+     "kind": "operative",
+     "pred": null,
+     "gold": [
+      "Arizona"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1001",
+   "pred": [
+    "Arizona",
+    "Federal",
+    "Illinois"
+   ],
+   "gold": [
+    "Federal",
+    "Oregon"
+   ],
+   "correct": false,
+   "tokens": 127,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Arizona",
+      "Illinois"
+     ],
+     "gold": [
+      "Federal",
+      "Oregon"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1002",
+   "pred": null,
+   "gold": [
+    "Federal",
+    "Pennsylvania"
+   ],
+   "correct": false,
+   "tokens": 261,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": null,
+     "gold": [
+      "Federal",
+      "Pennsylvania"
+     ],
+     "correct": false
+    },
+    {
+     "kind": "operative",
+     "pred": null,
+     "gold": [
+      "Arizona"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1003",
+   "pred": null,
+   "gold": [
+    "Federal",
+    "Wisconsin"
+   ],
+   "correct": false,
+   "tokens": 188,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": null,
+     "gold": [
+      "Federal",
+      "Wisconsin"
+     ],
+     "correct": false
+    },
+    {
+     "kind": "operative",
+     "pred": null,
+     "gold": [
+      "Federal",
+      "Pennsylvania"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1004",
+   "pred": null,
+   "gold": [
+    "Illinois"
+   ],
+   "correct": false,
+   "tokens": 167,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": null,
+     "gold": [
+      "Illinois"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1005",
+   "pred": [
+    "Arizona",
+    "Federal",
+    "Illinois"
+   ],
+   "gold": [
+    "Illinois"
+   ],
+   "correct": false,
+   "tokens": 134,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": null,
+     "gold": [
+      "Illinois"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1006",
+   "pred": null,
+   "gold": [
+    "Federal",
+    "Pennsylvania"
+   ],
+   "correct": false,
+   "tokens": 131,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": null,
+     "gold": [
+      "Federal",
+      "Pennsylvania"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1007",
+   "pred": null,
+   "gold": [
+    "Arizona"
+   ],
+   "correct": false,
+   "tokens": 236,
+   "twins": [
+    {
+     "kind": "operative",
+     "pred": null,
+     "gold": [
+      "Illinois"
+     ],
+     "correct": false
+    },
+    {
+     "kind": "invariant",
+     "pred": null,
+     "gold": [
+      "Arizona"
+     ],
+     "correct": false
+    }
+   ]
+  }
+ ],
+ "samples": [
+  "Step 1: Determine the applicable statutes for federal and state exemptions.  \n- **Federal Exemptions**: Under 11 U.S.C. \u00a7 522(b), the Debtors may claim exemptions under state law if applicable.  \n- **State Laws**:  \n  - **Arizona**: Residency in Arizona does not grant federal exemptions under 11 U.S.C. \u00a7 522(d).  \n  - **Illinois**: Residents are prohibited from using federal exemptions under 11 U.S.C. \u00a7 522(d).  \n  - **Oregon**: No provision on federal exemptions.  \n  - **Pennsylvania**: No provision on federal exemptions.  \n  - **Wisconsin**: No provision on federal exemptions.  \n\nStep 2: Apply the statutes to the Debtors' situation.  \n- The Debtors are residents of Arizona, Illinois, Pennsylvania, and Wisconsin.  \n- Under Arizona and Illinois statutes, federal exemptions are prohibited.  \n- No federal exemption is allowed under the provided statutes.  \n\nFINAL ANSWER: Arizona, Illinois, Pennsylvania, Wisconsin",
+  "Step 1: Determine the applicable statutes for each state.  \n- **United States Code Title 11** applies generally to federal exemptions.  \n- **Arizona Revised Statutes** prohibit use of federal exemptions.  \n- **Illinois Compiled Statutes** prohibit use of federal exemptions.  \n- **Oregon Revised Statutes** do not provide federal exemptions.  \n- **Pennsylvania Consolidated Statutes** do not provide federal exemptions.  \n- **Wisconsin Statutes** do not provide federal exemptions.  \n\nStep 2: Apply the statutes to the facts.  \n- The Debtor(s) are in the U.S. and the relevant states (Lexington, Oregon; Yuma, Arizona; Gilberton, Pennsylvania) have statutes that prohibit or limit federal exemptions.  \n- The federal exemption provisions (11 U.S.C. 522(d)) are not available in these states due to state laws.  \n\nFinal Answer: Federal, Arizona, Illinois, Oregon, Pennsylvania, Wisconsin",
+  "Step 1: Determine the applicable statutes for federal and state exemptions.  \n- **Federal Exemptions**: Under 11 U.S.C. \u00a7 522(b), debtors may claim exemptions under state law, provided the state law is applicable.  \n- **State Laws**:  \n  - **Arizona**: Under Ariz. Rev. Stat. \u00a7 33-1133(B), residents are not entitled to federal exemptions under 11 U.S.C. \u00a7 522(d).  \n  - **Illinois**: 735 Ill. Comp. Stat. 5/12-1201 prohibits use of federal exemptions.  \n  - **Pennsylvania** and **Wisconsin** have no provisions on federal exemptions.  \n\nStep 2: Apply the statutes to the facts.  \n- The Debtors are residents of Arizona, Illinois, and Pennsylvania.  \n- **Arizona** and **Illinois** prohibit federal exemptions.  \n- **Pennsylvania** and **Wisconsin** have no provisions.  \n\nFinal Answer: Arizona, Illinois",
+  "Carlos Rahimi, a debtor, is subject to federal and state exemptions under the provided statutes. Under 11 U.S.C. \u00a7 522(b), the debtor may claim exemptions under state law, provided the state law is applicable. Arizona Revised Statutes \u00a7 33-1133(B) prohibits federal exemptions for residents of Arizona. Illinois Compiled Statutes 735 Ill. Comp. Stat. 5/12-1201 prohibits the use of federal exemptions for residents of Illinois. Oregon and Wisconsin do not provide federal exemptions. \n\nFINAL ANSWER: Arizona, Illinois, Federal",
+  "Carlos Rahimi, a debtor, is subject to federal and state exemptions under the provided statutes. Under 11 U.S.C. \u00a7 522(b), the debtor may claim exemptions under state law, provided the state law is applicable. Arizona Revised Statutes \u00a7 33-1133(B) prohibits federal exemptions for residents of Arizona. Illinois law prohibits use of federal exemptions for residents of Illinois. Oregon and Pennsylvania do not provide specific exemptions, but since the debtor is domiciled in Arizona, the federal exemption under 11 U.S.C. \u00a7 522(d) is not available. \n\nFINAL ANSWER: Arizona, Illinois",
+  "Step 1: Determine the applicable statutes for federal and state exemptions.  \n- **Federal Exemptions**: Under 11 U.S.C. \u00a7 522(b), the Debtors may claim exemptions under state law if applicable.  \n- **State Laws**:  \n  - **Arizona**: Under Ariz. Rev. Stat. \u00a7 33-1133(B), residents are not entitled to federal exemptions provided in 11 U.S.C. \u00a7 522(d).  \n  - **Illinois**: 735 Ill. Comp. Stat. 5/12-1201 prohibits the use of federal exemptions.  \n  - **Oregon** and **Pennsylvania** have no provisions on federal exemptions.  \n  - **Wisconsin** has no provisions on federal exemptions.  \n\nStep 2: Apply the statutes to the Debtors' situation.  \n- The Debtors are residents of Arizona, Illinois, Oregon, and Pennsylvania.  \n- Under Arizona and Illinois, federal exemptions are prohibited.  \n- Oregon and Pennsylvania do not provide federal exemptions.  \n- The Debtors\u2019 primary residence was in Prescott, Arizona, and Newberg, Oregon, and Oakmont, Pennsylvania.  \n\nFinal Answer: Arizona, Illinois, Oregon, Pennsylvania"
+ ]
+}

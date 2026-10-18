@@ -1,0 +1,1273 @@
+{
+ "summary": {
+  "n": 40,
+  "acc": 0.225,
+  "no_answer_rate": 0.0,
+  "twin_acc": 0.19298245614035087,
+  "cf_operative_changed": 0.0,
+  "cf_invariant_kept": 0.5555555555555556,
+  "cf_balanced": 0.2777777777777778,
+  "cf_pairs": [
+   3,
+   9
+  ],
+  "trunc_agree_0": 0.225,
+  "trunc_agree_50": 0.5,
+  "tokens_right": 213.11111111111111,
+  "tokens_wrong": 220.48387096774192,
+  "seconds": 566,
+  "model": "mlx-community/Qwen3-4B-4bit",
+  "adapter": null
+ },
+ "records": [
+  {
+   "id": "ae-1000",
+   "pred": [
+    "Federal",
+    "Oregon",
+    "Pennsylvania"
+   ],
+   "gold": [
+    "Federal",
+    "Oregon"
+   ],
+   "correct": false,
+   "tokens": 311,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Pennsylvania"
+     ],
+     "gold": [
+      "Federal",
+      "Oregon"
+     ],
+     "correct": false
+    },
+    {
+     "kind": "operative",
+     "pred": [
+      "Federal",
+      "Oregon"
+     ],
+     "gold": [
+      "Arizona"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1001",
+   "pred": [
+    "Arizona",
+    "Federal",
+    "Illinois",
+    "Oregon",
+    "Pennsylvania",
+    "Wisconsin"
+   ],
+   "gold": [
+    "Federal",
+    "Oregon"
+   ],
+   "correct": false,
+   "tokens": 237,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Oregon"
+     ],
+     "gold": [
+      "Federal",
+      "Oregon"
+     ],
+     "correct": true
+    }
+   ]
+  },
+  {
+   "id": "ae-1002",
+   "pred": [
+    "Arizona",
+    "Federal"
+   ],
+   "gold": [
+    "Federal",
+    "Pennsylvania"
+   ],
+   "correct": false,
+   "tokens": 236,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Arizona",
+      "Federal"
+     ],
+     "gold": [
+      "Federal",
+      "Pennsylvania"
+     ],
+     "correct": false
+    },
+    {
+     "kind": "operative",
+     "pred": [
+      "Arizona",
+      "Federal"
+     ],
+     "gold": [
+      "Arizona"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1003",
+   "pred": [
+    "Arizona"
+   ],
+   "gold": [
+    "Federal",
+    "Wisconsin"
+   ],
+   "correct": false,
+   "tokens": 177,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Arizona",
+      "Federal"
+     ],
+     "gold": [
+      "Federal",
+      "Wisconsin"
+     ],
+     "correct": false
+    },
+    {
+     "kind": "operative",
+     "pred": [
+      "Arizona",
+      "Federal"
+     ],
+     "gold": [
+      "Federal",
+      "Pennsylvania"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1004",
+   "pred": [
+    "Federal",
+    "Illinois"
+   ],
+   "gold": [
+    "Illinois"
+   ],
+   "correct": false,
+   "tokens": 229,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Illinois"
+     ],
+     "gold": [
+      "Illinois"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1005",
+   "pred": [
+    "Illinois"
+   ],
+   "gold": [
+    "Illinois"
+   ],
+   "correct": true,
+   "tokens": 211,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Illinois"
+     ],
+     "gold": [
+      "Illinois"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1006",
+   "pred": [
+    "Federal",
+    "Oregon"
+   ],
+   "gold": [
+    "Federal",
+    "Pennsylvania"
+   ],
+   "correct": false,
+   "tokens": 184,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Oregon"
+     ],
+     "gold": [
+      "Federal",
+      "Pennsylvania"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1007",
+   "pred": [
+    "Federal",
+    "Illinois"
+   ],
+   "gold": [
+    "Arizona"
+   ],
+   "correct": false,
+   "tokens": 206,
+   "twins": [
+    {
+     "kind": "operative",
+     "pred": [
+      "Federal",
+      "Illinois"
+     ],
+     "gold": [
+      "Illinois"
+     ],
+     "correct": false
+    },
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Illinois"
+     ],
+     "gold": [
+      "Arizona"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1008",
+   "pred": [
+    "Federal",
+    "Wisconsin"
+   ],
+   "gold": [
+    "Federal",
+    "Oregon"
+   ],
+   "correct": false,
+   "tokens": 198,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Wisconsin"
+     ],
+     "gold": [
+      "Federal",
+      "Oregon"
+     ],
+     "correct": false
+    },
+    {
+     "kind": "operative",
+     "pred": [
+      "Federal",
+      "Wisconsin"
+     ],
+     "gold": [
+      "Federal",
+      "Wisconsin"
+     ],
+     "correct": true
+    }
+   ]
+  },
+  {
+   "id": "ae-1009",
+   "pred": [
+    "Arizona"
+   ],
+   "gold": [
+    "Arizona"
+   ],
+   "correct": true,
+   "tokens": 265,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Arizona"
+     ],
+     "gold": [
+      "Arizona"
+     ],
+     "correct": true
+    },
+    {
+     "kind": "operative",
+     "pred": [
+      "Arizona"
+     ],
+     "gold": [
+      "Federal",
+      "Pennsylvania"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1010",
+   "pred": [
+    "Arizona",
+    "Federal"
+   ],
+   "gold": [
+    "Illinois"
+   ],
+   "correct": false,
+   "tokens": 236,
+   "twins": [
+    {
+     "kind": "operative",
+     "pred": [
+      "Federal",
+      "Illinois"
+     ],
+     "gold": [
+      "Arizona"
+     ],
+     "correct": false
+    },
+    {
+     "kind": "invariant",
+     "pred": [
+      "Arizona",
+      "Federal"
+     ],
+     "gold": [
+      "Illinois"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1011",
+   "pred": [
+    "Arizona",
+    "Federal"
+   ],
+   "gold": [
+    "Illinois"
+   ],
+   "correct": false,
+   "tokens": 201,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Arizona",
+      "Federal"
+     ],
+     "gold": [
+      "Illinois"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1012",
+   "pred": [
+    "Arizona",
+    "Federal"
+   ],
+   "gold": [
+    "Arizona"
+   ],
+   "correct": false,
+   "tokens": 221,
+   "twins": [
+    {
+     "kind": "operative",
+     "pred": [
+      "Arizona",
+      "Federal"
+     ],
+     "gold": [
+      "Illinois"
+     ],
+     "correct": false
+    },
+    {
+     "kind": "invariant",
+     "pred": [
+      "Arizona",
+      "Federal"
+     ],
+     "gold": [
+      "Arizona"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1013",
+   "pred": [
+    "Federal",
+    "Illinois"
+   ],
+   "gold": [
+    "Federal",
+    "Wisconsin"
+   ],
+   "correct": false,
+   "tokens": 312,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Oregon"
+     ],
+     "gold": [
+      "Federal",
+      "Wisconsin"
+     ],
+     "correct": false
+    },
+    {
+     "kind": "operative",
+     "pred": [
+      "Federal",
+      "Illinois"
+     ],
+     "gold": [
+      "Federal",
+      "Oregon"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1014",
+   "pred": [
+    "Federal",
+    "Oregon"
+   ],
+   "gold": [
+    "Federal",
+    "Oregon"
+   ],
+   "correct": true,
+   "tokens": 220,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Oregon",
+      "Pennsylvania",
+      "Wisconsin"
+     ],
+     "gold": [
+      "Federal",
+      "Oregon"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1015",
+   "pred": [
+    "Arizona",
+    "Federal",
+    "Illinois"
+   ],
+   "gold": [
+    "Arizona"
+   ],
+   "correct": false,
+   "tokens": 268,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Arizona",
+      "Federal"
+     ],
+     "gold": [
+      "Arizona"
+     ],
+     "correct": false
+    },
+    {
+     "kind": "operative",
+     "pred": [
+      "Arizona",
+      "Federal"
+     ],
+     "gold": [
+      "Federal",
+      "Oregon"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1016",
+   "pred": [
+    "Federal",
+    "Wisconsin"
+   ],
+   "gold": [
+    "Federal",
+    "Wisconsin"
+   ],
+   "correct": true,
+   "tokens": 181,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Wisconsin"
+     ],
+     "gold": [
+      "Federal",
+      "Wisconsin"
+     ],
+     "correct": true
+    }
+   ]
+  },
+  {
+   "id": "ae-1017",
+   "pred": [
+    "Arizona"
+   ],
+   "gold": [
+    "Arizona"
+   ],
+   "correct": true,
+   "tokens": 198,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Arizona"
+     ],
+     "gold": [
+      "Arizona"
+     ],
+     "correct": true
+    },
+    {
+     "kind": "operative",
+     "pred": [
+      "Arizona"
+     ],
+     "gold": [
+      "Illinois"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1018",
+   "pred": [
+    "Federal",
+    "Illinois"
+   ],
+   "gold": [
+    "Illinois"
+   ],
+   "correct": false,
+   "tokens": 250,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Illinois"
+     ],
+     "gold": [
+      "Illinois"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1019",
+   "pred": [
+    "Federal",
+    "Wisconsin"
+   ],
+   "gold": [
+    "Federal",
+    "Wisconsin"
+   ],
+   "correct": true,
+   "tokens": 238,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Wisconsin"
+     ],
+     "gold": [
+      "Federal",
+      "Wisconsin"
+     ],
+     "correct": true
+    }
+   ]
+  },
+  {
+   "id": "ae-1020",
+   "pred": [
+    "Arizona",
+    "Federal",
+    "Illinois"
+   ],
+   "gold": [
+    "Federal",
+    "Wisconsin"
+   ],
+   "correct": false,
+   "tokens": 346,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Arizona",
+      "Federal"
+     ],
+     "gold": [
+      "Federal",
+      "Wisconsin"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1021",
+   "pred": [
+    "Federal",
+    "Illinois"
+   ],
+   "gold": [
+    "Federal",
+    "Oregon"
+   ],
+   "correct": false,
+   "tokens": 249,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Illinois",
+      "Oregon"
+     ],
+     "gold": [
+      "Federal",
+      "Oregon"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1022",
+   "pred": [
+    "Arizona",
+    "Federal",
+    "Illinois",
+    "Pennsylvania"
+   ],
+   "gold": [
+    "Federal",
+    "Pennsylvania"
+   ],
+   "correct": false,
+   "tokens": 279,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Arizona",
+      "Federal"
+     ],
+     "gold": [
+      "Federal",
+      "Pennsylvania"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1023",
+   "pred": [
+    "Arizona",
+    "Federal"
+   ],
+   "gold": [
+    "Federal",
+    "Oregon"
+   ],
+   "correct": false,
+   "tokens": 289,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": null,
+     "gold": [
+      "Federal",
+      "Oregon"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1024",
+   "pred": [
+    "Arizona",
+    "Federal"
+   ],
+   "gold": [
+    "Arizona"
+   ],
+   "correct": false,
+   "tokens": 205,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Arizona",
+      "Federal"
+     ],
+     "gold": [
+      "Arizona"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1025",
+   "pred": [
+    "Federal",
+    "Pennsylvania"
+   ],
+   "gold": [
+    "Federal",
+    "Wisconsin"
+   ],
+   "correct": false,
+   "tokens": 221,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Wisconsin"
+     ],
+     "gold": [
+      "Federal",
+      "Wisconsin"
+     ],
+     "correct": true
+    }
+   ]
+  },
+  {
+   "id": "ae-1026",
+   "pred": [
+    "Federal",
+    "Wisconsin"
+   ],
+   "gold": [
+    "Federal",
+    "Oregon"
+   ],
+   "correct": false,
+   "tokens": 183,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal"
+     ],
+     "gold": [
+      "Federal",
+      "Oregon"
+     ],
+     "correct": false
+    },
+    {
+     "kind": "operative",
+     "pred": [
+      "Federal"
+     ],
+     "gold": [
+      "Illinois"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1027",
+   "pred": [
+    "Federal",
+    "Oregon"
+   ],
+   "gold": [
+    "Arizona"
+   ],
+   "correct": false,
+   "tokens": 168,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Oregon"
+     ],
+     "gold": [
+      "Arizona"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1028",
+   "pred": [
+    "Federal",
+    "Wisconsin"
+   ],
+   "gold": [
+    "Federal",
+    "Pennsylvania"
+   ],
+   "correct": false,
+   "tokens": 165,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Wisconsin"
+     ],
+     "gold": [
+      "Federal",
+      "Pennsylvania"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1029",
+   "pred": [
+    "Federal",
+    "Oregon"
+   ],
+   "gold": [
+    "Federal",
+    "Pennsylvania"
+   ],
+   "correct": false,
+   "tokens": 155,
+   "twins": [
+    {
+     "kind": "operative",
+     "pred": [
+      "Federal",
+      "Oregon"
+     ],
+     "gold": [
+      "Arizona"
+     ],
+     "correct": false
+    },
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Oregon"
+     ],
+     "gold": [
+      "Federal",
+      "Pennsylvania"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1030",
+   "pred": [
+    "Federal",
+    "Wisconsin"
+   ],
+   "gold": [
+    "Federal",
+    "Wisconsin"
+   ],
+   "correct": true,
+   "tokens": 202,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal"
+     ],
+     "gold": [
+      "Federal",
+      "Wisconsin"
+     ],
+     "correct": false
+    },
+    {
+     "kind": "operative",
+     "pred": [
+      "Federal",
+      "Wisconsin"
+     ],
+     "gold": [
+      "Federal",
+      "Oregon"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1031",
+   "pred": [
+    "Federal",
+    "Oregon"
+   ],
+   "gold": [
+    "Federal",
+    "Wisconsin"
+   ],
+   "correct": false,
+   "tokens": 218,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Wisconsin"
+     ],
+     "gold": [
+      "Federal",
+      "Wisconsin"
+     ],
+     "correct": true
+    }
+   ]
+  },
+  {
+   "id": "ae-1032",
+   "pred": [
+    "Federal",
+    "Oregon"
+   ],
+   "gold": [
+    "Arizona"
+   ],
+   "correct": false,
+   "tokens": 165,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Oregon"
+     ],
+     "gold": [
+      "Arizona"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1033",
+   "pred": [
+    "Federal",
+    "Pennsylvania"
+   ],
+   "gold": [
+    "Federal",
+    "Pennsylvania"
+   ],
+   "correct": true,
+   "tokens": 156,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Pennsylvania"
+     ],
+     "gold": [
+      "Federal",
+      "Pennsylvania"
+     ],
+     "correct": true
+    }
+   ]
+  },
+  {
+   "id": "ae-1034",
+   "pred": [
+    "Federal",
+    "Wisconsin"
+   ],
+   "gold": [
+    "Federal",
+    "Oregon"
+   ],
+   "correct": false,
+   "tokens": 209,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Oregon"
+     ],
+     "gold": [
+      "Federal",
+      "Oregon"
+     ],
+     "correct": true
+    },
+    {
+     "kind": "operative",
+     "pred": [
+      "Federal",
+      "Oregon"
+     ],
+     "gold": [
+      "Arizona"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1035",
+   "pred": [
+    "Arizona",
+    "Federal",
+    "Illinois"
+   ],
+   "gold": [
+    "Arizona"
+   ],
+   "correct": false,
+   "tokens": 206,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Illinois"
+     ],
+     "gold": [
+      "Arizona"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1036",
+   "pred": [
+    "Arizona",
+    "Federal"
+   ],
+   "gold": [
+    "Arizona"
+   ],
+   "correct": false,
+   "tokens": 179,
+   "twins": [
+    {
+     "kind": "operative",
+     "pred": [
+      "Arizona"
+     ],
+     "gold": [
+      "Federal",
+      "Oregon"
+     ],
+     "correct": false
+    },
+    {
+     "kind": "invariant",
+     "pred": [
+      "Arizona",
+      "Federal"
+     ],
+     "gold": [
+      "Arizona"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1037",
+   "pred": [
+    "Federal",
+    "Pennsylvania"
+   ],
+   "gold": [
+    "Federal",
+    "Pennsylvania"
+   ],
+   "correct": true,
+   "tokens": 247,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Arizona",
+      "Federal"
+     ],
+     "gold": [
+      "Federal",
+      "Pennsylvania"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1038",
+   "pred": [
+    "Federal",
+    "Oregon"
+   ],
+   "gold": [
+    "Illinois"
+   ],
+   "correct": false,
+   "tokens": 185,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Illinois"
+     ],
+     "gold": [
+      "Illinois"
+     ],
+     "correct": false
+    }
+   ]
+  },
+  {
+   "id": "ae-1039",
+   "pred": [
+    "Federal",
+    "Oregon"
+   ],
+   "gold": [
+    "Federal",
+    "Wisconsin"
+   ],
+   "correct": false,
+   "tokens": 147,
+   "twins": [
+    {
+     "kind": "invariant",
+     "pred": [
+      "Federal",
+      "Wisconsin"
+     ],
+     "gold": [
+      "Federal",
+      "Wisconsin"
+     ],
+     "correct": true
+    },
+    {
+     "kind": "operative",
+     "pred": [
+      "Federal",
+      "Oregon"
+     ],
+     "gold": [
+      "Federal",
+      "Pennsylvania"
+     ],
+     "correct": false
+    }
+   ]
+  }
+ ],
+ "samples": [
+  "The Debtors, Ali and Jennifer Kaya, filed for bankruptcy on October 28, 2024. Under 11 U.S.C. \u00a7 522(b), a debtor may exempt property based on state or federal law. The key is determining which state's law applies to the Debtors. The Debtors' primary residence was in Gilberton, Pennsylvania on 10/21/2024, which is the date of filing. Therefore, Pennsylvania law applies. However, the statutes for Pennsylvania, Arizona, and Wisconsin do not provide specific exemptions. The statutes for Arizona and Illinois explicitly state that residents cannot use federal exemptions. However, the Debtors' domicile for the 730 days preceding the filing was in Oregon (from January 7, 2018, to March 12, 2023), and their primary residence was in Gilberton, Pennsylvania. Since Pennsylvania does not have specific exemptions, the Debtors may not use federal exemptions. However, the question asks for jurisdictions where exemptions may be claimed. Since the Debtors' domicile was in Oregon for part of the 730-day period, and Oregon has no specific exemptions, the only applicable jurisdiction is Federal, as the Debtors may use federal exemptions under 11 U.S.C. \u00a7 522(b)(2) if allowed by state law. Since no state statute prohibits federal exemptions, the Debtors may claim federal exemptions.\n\nFINAL ANSWER: Federal, Oregon, Pennsylvania",
+  "The Debtors, Ali and Jennifer Kaya, filed for bankruptcy on October 28, 2024. Under 11 U.S.C. \u00a7 522(b), a debtor may exempt property based on state or federal law. The key is determining which state's law applies to the Debtors. The Debtors' primary residence was in Gilberton, Pennsylvania on 10/21/2024, which is the date of filing. Therefore, Pennsylvania law applies. However, the statutes for Pennsylvania, Arizona, and Illinois explicitly state that residents cannot use federal exemptions. The statutes for Arizona and Illinois prohibit the use of federal exemptions. Since the Debtors are domiciled in Pennsylvania, and Pennsylvania does not have specific exemptions, they may use federal exemptions. However, the statutes for Arizona and Illinois prohibit the use of federal exemptions. Since the Debtors are domiciled in Pennsylvania, and Pennsylvania does not have specific exemptions, they may use federal exemptions. \n\nFINAL ANSWER: Federal, Pennsylvania",
+  "The Debtors, Ali and Jennifer Kaya, filed for bankruptcy on October 28, 2024. Under 11 U.S.C. \u00a7 522(b), a debtor may exempt property based on state or federal law. The key is determining which state's law applies to the Debtors. The Debtors' primary residence was in Gilberton, Pennsylvania on 10/21/2024, which is the date of filing. Therefore, Pennsylvania law applies. However, the statutes for Pennsylvania, Arizona, and Wisconsin do not provide specific exemptions. The statutes for Arizona and Illinois explicitly state that residents cannot use federal exemptions. However, the Debtors' domicile for the 730 days preceding the filing was in Oregon (from January 7, 2018, to July 15, 2022), and their primary residence was in Yuma, Arizona. Since the Debtors' domicile was in Oregon, they may use Oregon's exemptions. However, the statutes for Oregon do not mention exemptions. Therefore, the only applicable exemption is the federal one, as the Debtors' domicile was in Oregon, and the federal exemptions are allowed under 11 U.S.C. \u00a7 522(b)(3).\n\nFINAL ANSWER: Federal, Oregon",
+  "The Debtor, Carlos Rahimi, is domiciled in Brownsville, Oregon as of January 10, 2021, but relocated to Flagstaff, Arizona on January 10, 2024. Under 11 U.S.C. \u00a7 522(b)(3)(A), a debtor may exempt property based on the state or local law applicable to the place where the debtor's domicile was located for the 730 days preceding the filing. Since the Debtor's domicile was in Oregon for the 730-day period before the filing, Oregon law would apply. However, the statutes show that Oregon has no provisions on federal exemptions. The other states (Arizona, Illinois, Pennsylvania, Wisconsin) have statutes that prohibit the use of federal exemptions. However, Arizona's statute specifically states that residents are not entitled to federal exemptions. Therefore, the Debtor cannot claim federal exemptions. The only applicable state is Oregon, but there are no provisions on federal exemptions in Oregon. Thus, the Debtor may not claim any exemptions under the provided statutes.\n\nFINAL ANSWER: Federal, Arizona, Oregon, Illinois, Pennsylvania, Wisconsin",
+  "The Debtor, Carlos Rahimi, is domiciled in Brownsville, Oregon as of January 10, 2021, but relocated to Flagstaff, Arizona on September 7, 2024. Under 11 U.S.C. \u00a7 522(b)(3)(A), a debtor may exempt property based on the state where they were domiciled for the 730 days preceding the filing date. Since the Debtor's domicile was in Oregon for the 730 days before the filing (October 26, 2024), Oregon law would apply. However, the statutes for Oregon do not mention federal exemptions. The statutes for Arizona, Illinois, and other states explicitly prohibit the use of federal exemptions. Therefore, the Debtor may only claim exemptions under Oregon law, which is not specified in the provided statutes. Since no Oregon-specific exemptions are listed, the only applicable exemption is the federal one, as the statute for Oregon does not prohibit it. \n\nFINAL ANSWER: Federal, Oregon",
+  "The Debtors, Mariam and Selma Nowak, moved their permanent residence to Prescott, Arizona on July 7, 2022, and to Newberg, Oregon on August 28, 2023. Under 11 U.S.C. \u00a7 522(b)(3)(A), a debtor may exempt property based on the state where they were domiciled for 730 days before filing. The Debtors' domicile changed, so we look at the state where they were domiciled for the 730-day period. The last 730 days before September 28, 2024, would include Arizona (July 7, 2022 \u2013 September 28, 2024), which is over 730 days. Therefore, Arizona's exemptions apply. The statutes for Arizona and Illinois prohibit using federal exemptions, but the Debtors are not using federal exemptions, so Arizona applies. Oregon has no federal exemption provisions, so it does not apply. Pennsylvania, Wisconsin, and Illinois also have no applicable exemptions. \n\nFINAL ANSWER: Arizona, Federal"
+ ]
+}

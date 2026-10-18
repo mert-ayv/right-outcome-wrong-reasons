@@ -1,0 +1,11 @@
+{
+ "setup": "Qwen3-4B (unsloth bnb-4bit), LoRA r16, outcome-reward GRPO (TRL via Unsloth), 4 prompts x 8 samples per step, lr 2e-5, beta 0, seed 1, free Colab T4; OpenExempt Task AE with focused statutes; 300 test items with solver-verified twins; greedy decoding, max 512 tokens. Transcribed from the Colab log (log2.txt / log.txt) on 2026-10-18 22:10 UTC.",
+ "base": {"acc": 0.3333, "cf_operative_changed": 0.4634, "cf_invariant_kept": 0.62, "cf_pairs": [41, 100],
+          "cf_balanced": 0.5417, "tokens_right": 182.86, "tokens_wrong": 184.31, "trunc_agree_0": 0.06, "trunc_agree_50": 0.18},
+ "step30": {"acc": 0.4933, "cf_operative_changed": 0.2545, "cf_invariant_kept": 0.7568, "cf_pairs": [55, 148],
+            "cf_balanced": 0.5057, "tokens_right": 176.30, "tokens_wrong": 189.26, "trunc_agree_0": 0.20, "trunc_agree_50": 0.38},
+ "step60": {"acc": 0.5533, "cf_operative_changed": 0.2537, "cf_invariant_kept": 0.7410, "cf_pairs": [67, 166],
+            "cf_balanced": 0.4973, "tokens_right": 171.78, "tokens_wrong": 179.20, "trunc_agree_0": 0.24, "trunc_agree_50": 0.48},
+ "train_reward_per_5_steps": [0.2812, 0.375, 0.3312, 0.4, 0.325, 0.3625, 0.4688, 0.4625, 0.3, 0.425, 0.4375],
+ "note": "step30 cf_pairs invariant count read as 148 from a partly occluded screen; derived from cf_invariant_kept 0.7568 = 112/148."
+}

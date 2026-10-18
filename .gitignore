@@ -1,0 +1,24 @@
+# Python / environments
+.venv/
+__pycache__/
+*.pyc
+
+# Third-party code: clone OpenExempt separately (see pilot/README.md)
+pilot/vendor/
+
+# Large or regenerable artefacts
+pilot/runs/
+pilot/logs/
+pilot/data_d2/
+
+# Full texts of third-party papers (copyrighted; keep local only)
+design-rlvr-261018/fulltext/
+
+# Local tool settings
+.claude/
+.DS_Store
+
+# Private working notes and third-party documents (kept local, not published)
+design-rlvr-261018/
+feedback-for-drafting-agent.md
+260904_Stipendium_CodeX_Stanford_WS26-27.pdf

@@ -1,0 +1,7 @@
+{
+ "train": 1000,
+ "test": 300,
+ "operative": 136,
+ "invariant": 300,
+ "label_check_failures": 0
+}
