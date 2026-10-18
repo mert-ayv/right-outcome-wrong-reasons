@@ -4,8 +4,10 @@ A one-day pilot for the exposé "Right Outcome, Wrong Reasons?" (`../expose/expo
 the first hypothesis (H1): training a language model with outcome-only reinforcement learning on a
 statutory task raises accuracy but lowers the faithfulness of its reasoning.
 
-**Status (18 October 2026):** one seed, 60 GRPO steps, Qwen3-4B, free Colab T4. Preliminary
-evidence, not a finding.
+**Status (19 October 2026): H1 pending.** One exploratory run (seed 1, 18 October) points in the
+H1 direction but is not evidence under the plan. Confirmatory reruns (seed 1 again, seed 2, an
+answer-only SFT arm) with per-item logging and the pre-registered metric are specified in
+[PREREGISTRATION.md](PREREGISTRATION.md), committed before they started.
 
 ## Task and data
 
@@ -33,7 +35,7 @@ evidence, not a finding.
 | `cf_balanced` | mean of the two; 0.5 is chance |
 | `trunc_agree_0` / `_50` | early-answering test (Lanham et al. 2023): share of answers unchanged when the model's own reasoning is cut to 0% / 50%. Higher means the answer depends less on the stated reasoning |
 
-## Results
+## Exploratory run (18 October 2026, seed 1)
 
 Qwen3-4B (Unsloth 4-bit), LoRA rank 16, outcome-reward GRPO (TRL via Unsloth), 4 prompts x 8
 samples per step, learning rate 2e-5, no KL term, seed 1, greedy evaluation.
@@ -49,17 +51,31 @@ samples per step, learning rate 2e-5, no KL term, seed 1, greedy evaluation.
 | Mean tokens, right / wrong answers | 183 / 184 | 176 / 189 | 172 / 179 |
 
 Training reward per 5 steps: 0.28, 0.38, 0.33, 0.40, 0.33, 0.36, 0.47, 0.46, 0.30, 0.43, 0.44.
-Numbers are in `results/colab_t4_seed1.json` (transcribed from the Colab log).
+Numbers are in `results/colab_t4_seed1.json`, transcribed from the Colab log. **No per-item
+outputs exist for this run**: the evaluation printed only summaries, and the Colab session that
+held the checkpoints has been deleted. The numbers can therefore not be recomputed, and the
+pre-registered metric (CF on items that *both* models answer correctly) cannot be computed for
+this run.
 
 **Reading.** Outcome-RL raised accuracy by 22 points. The trained model follows a legally decisive
 date shift less often (46% to 25%; two-proportion test p ≈ 0.025) and reaches the same answer
-without its reasoning far more often (6% to 24%; p < 0.001). CF balanced fell by 4.4 points, short
-of the pre-registered 5-point threshold, so H1 is formally *inconclusive* in this run; the
-component measures point in the H1 direction.
+without its reasoning more often (6/100 to 24/100; p < 0.001). Caveats:
 
-**Limitations.** One seed, 60 steps, one domain, one 4B model; the p-values ignore training
-randomness. The base model's CF is already near chance, so part of the effect is the trained model
-becoming more insensitive to edits overall. The statute excerpt is shortened (see above).
+- The CF figures in this table are **CF_own**: each model is scored on the items *it* answered
+  correctly (41 operative pairs before, 67 after), so the comparison mixes the training effect with
+  a change in which items are counted. The plan's metric is CF on jointly correct items.
+- CF balanced fell by 4.4 points. Under the decision rule written before the run (see
+  [PREREGISTRATION.md](PREREGISTRATION.md)), a 2 to 5 point drop triggers another seed, so H1 is
+  **pending**, not supported.
+- The trained model reacts less to date edits of both kinds (operative and invariant). That fits a
+  shortcut, but also more confident answering; only per-item data and the SFT arm can separate the two.
+- The early-answering test counts unparseable outputs as disagreement; parse failures were not
+  logged, so part of the 6% to 24% rise may come from parse failures of the base model.
+- The p-values ignore training randomness (one seed).
+
+**Limitations.** One seed, 60 steps, one domain, one 4B model. The base model's CF is already
+near chance, so a drop is bounded. The statute excerpt is shortened (see above). All deviations
+from the original pilot plan are listed in [PREREGISTRATION.md](PREREGISTRATION.md).
 
 ## Earlier probes (`results/`)
 
@@ -92,6 +108,15 @@ Runtime on a free T4: about 19 minutes for the base evaluation, 2 hours for trai
 per checkpoint evaluation. `colab/h1_pilot.ipynb` is an untested A100/L4 variant using TRL and vLLM
 directly.
 
+**Confirmatory reruns (pre-registered):** upload `colab/pilot_data.zip` and `colab/pilot_t4c.py`,
+then run each job in its own process:
+```
+!pip install -q unsloth vllm vllm-bnb-plugin
+!export UNSLOTH_VLLM_NO_FLASHINFER=1 VLLM_USE_FLASHINFER_SAMPLER=0; python -u pilot_t4c.py --job base; python -u pilot_t4c.py --job grpo --seed 1
+```
+Per-item records land in `/content/h1_rerun/records/`; analyse them locally with
+`python -I src/analyze.py --records results/rerun/records --out results/rerun/analysis.json`.
+
 **Apple Silicon (MLX):** `src/evaluate.py` and `src/grpo.py` implement the same evaluation and an
 outcome-reward GRPO trainer in MLX; `run_pilot.sh` chains them. On a 16 GB M4, a 4B training step
 takes about 2 minutes with LoRA on the top 12 layers, and the 4B evaluation used enough memory to
@@ -104,8 +129,10 @@ src/ae_data.py        dataset and counterfactual twins from OpenExempt
 src/common.py         prompt format, answer parser, outcome reward
 src/evaluate.py       MLX evaluation (accuracy, CF, early answering, token lengths)
 src/grpo.py           MLX outcome-reward GRPO with LoRA
+src/analyze.py        pre-registered metrics from per-item records (CF_joint, bootstrap, verdict)
 run_pilot.sh          MLX pipeline (base eval, GRPO, checkpoint evals)
-colab/pilot_t4b.py    Colab T4 run that produced the results (Unsloth + TRL)
+colab/pilot_t4c.py    Colab T4 reruns with per-item logging (base, GRPO, SFT jobs)
+colab/pilot_t4b.py    Colab T4 run that produced the exploratory results (Unsloth + TRL)
 colab/pilot_t4.py     Colab T4 base evaluation (150-step version, stopped after base eval)
 colab/*.ipynb         notebook versions; make_notebook*.py generate them
 data/                 generated train/test sets

@@ -25,9 +25,11 @@ Qwen3-4B, outcome-reward GRPO, 60 steps, one seed, OpenExempt Task AE, 300 test 
 | Same answer with the reasoning removed | 6% | 24% |
 | Counterfactual faithfulness (balanced, 0.5 = chance) | 0.54 | 0.50 |
 
-Accuracy rose while the model tracked the operative fact less and relied less on its stated
-reasoning. Preliminary: one seed, and the balanced CF drop (4.4 points) is below the pre-registered
-5-point threshold. Details and limitations in [pilot/README.md](pilot/README.md).
+Exploratory run, one seed. Accuracy rose while the model tracked the operative fact less and
+relied less on its stated reasoning. The CF figures are computed on each model's own correct items,
+not on jointly correct items as planned, and the 4.4-point drop falls in the range where the rule
+written before the run asks for another seed: **H1 is pending.** Confirmatory reruns are specified
+in [pilot/PREREGISTRATION.md](pilot/PREREGISTRATION.md). Details in [pilot/README.md](pilot/README.md).
 
 ## License and credits
 
