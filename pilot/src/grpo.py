@@ -68,6 +68,7 @@ def main():
     ap.add_argument("--temp", type=float, default=1.0)
     ap.add_argument("--lr", type=float, default=2e-5)
     ap.add_argument("--rank", type=int, default=16)
+    ap.add_argument("--lora_scale", type=float, default=20.0, help="2.0 matches PEFT alpha 32 / r 16")
     ap.add_argument("--num_layers", type=int, default=-1)
     ap.add_argument("--micro_batch", type=int, default=4)
     ap.add_argument("--save_every", type=int, default=25)
@@ -78,7 +79,7 @@ def main():
     mx.random.seed(args.seed)
     model, tokenizer = load(args.model)
     model.freeze()
-    lora_cfg = {"rank": args.rank, "scale": 20.0, "dropout": 0.0}
+    lora_cfg = {"rank": args.rank, "scale": args.lora_scale, "dropout": 0.0}
     num_layers = args.num_layers if args.num_layers > 0 else len(model.layers)
     linear_to_lora_layers(model, num_layers, lora_cfg)
     n_train = sum(v.size for _, v in tree_flatten(model.trainable_parameters()))

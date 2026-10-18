@@ -91,3 +91,18 @@ whether an effect is specific to RL: if `sft-s1` shows a CF_joint drop of simila
 
 One model size, one domain, a shortened statute excerpt, 60 steps. The base model's CF is close to
 chance, so a drop is bounded. CF_joint uses fewer items than CF_own.
+
+## Amendment 1 (2026-10-19, before the run started)
+
+Colab refused a GPU on 2026-10-19 around 00:15 local time because the free usage limit was
+reached, so the runs above cannot start tonight. An additional run is added; the plan above is
+unchanged and will be run when Colab provides a GPU again.
+
+**`mlx-grpo-s1`: replication on Apple Silicon (MLX)**, run by `run_rerun_mlx.sh`:
+base evaluation and outcome-GRPO seed 1 with `src/eval_records.py` and `src/grpo.py`, same data,
+prompts, reward, decoding, metrics and analysis (`src/analyze.py`). Differences from the Colab
+setup: MLX 4-bit model (`mlx-community/Qwen3-4B-4bit`) instead of bitsandbytes 4-bit; LoRA rank 16
+with scale 2.0 (equal to alpha 32 / r 16) on the **top 12 of 36 layers** only (all-layer LoRA does
+not fit in 16 GB memory at usable speed); Adam instead of 8-bit AdamW; a different random number
+generator. Because the stack differs, this run is reported separately as a replication and does
+**not** enter the H1 verdict above. The same decision rule is applied to it and reported.
