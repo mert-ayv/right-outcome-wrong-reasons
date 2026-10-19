@@ -15,10 +15,10 @@ accuracy cost?
   rule), Qwen3-4B is trained with outcome-only RL (GRPO) and with answer-only SFT. Faithfulness is
   measured with solver-verified twins (does the answer change exactly when the legal answer changes?)
   and by removing the model's own reasoning. Metrics and decision rule are pre-registered.
-- **Finding:** training raises accuracy (33% to 55% with outcome RL, 73% with answer-only SFT) but
-  does not teach the rule. The SFT model mostly answers with the first state named in the text, a
+- **Finding:** training on answers raises accuracy without teaching the rule (answer-only SFT: 33% to
+  73%; outcome RL: 55% in one seed, 34% in the other, so its gain is unstable over 60 steps). The SFT model mostly answers with the first state named in the text, a
   shortcut that is right on 86% of the cases; when the decisive date moves, its answer changes in 0% of
-  the pairs (outcome RL: 21%, untrained: about 38%). Accuracy cannot see this; the twins can. The
+  the pairs (outcome RL: 21% and 11% in the two seeds, untrained: about 20 to 40%). Accuracy cannot see this; the twins can. The
   pre-registered balanced metric stays at chance and misses it: H1 as pre-registered is refuted
   (both seeds).
 - **Contribution:** an open environment with solver-verified counterfactual twins on real statutes,
@@ -117,8 +117,9 @@ after; 19 to 29 operative pairs per comparison, so these rows are descriptive). 
 seed 2 and SFT on a Modal L4, each compared with the untrained model on the same machine. ¹ The SFT model was trained to answer without reasoning, so this row says little for it.
 
 **Findings**
-1. **Accuracy rises, the rule is not learned.** Both training methods raise accuracy; neither makes
-   the model follow the date that decides the case.
+1. **Accuracy can rise, the rule is not learned.** Answer-only SFT raises accuracy strongly; outcome
+   RL does so in one of two seeds (55% vs 34%; with 60 steps its gain depends on the random seed).
+   No trained model follows the date that decides the case more than the untrained one.
 2. **The shortcut has a name.** "Take the first state named" ignores the dates but is right on 86% of
    the test cases (an artefact of how OpenExempt generates cases). 84% of the SFT model's answers
    and 60% of the GRPO model's answers coincide with it (`pilot/results/shortcut_analysis.md`,
