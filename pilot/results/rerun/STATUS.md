@@ -26,3 +26,12 @@ seeds with zero parse failures.
 **Why incomplete.** The free Colab runtime stopped after about 5.5 hours (05:10 UTC) and no GPU
 was available afterwards. Checkpoint `grpo-s2/checkpoint-30` is on Google Drive; running the
 notebook again resumes seed 2 at step 30 and then runs SFT.
+
+## Update 2026-10-19 12:20: H1 complete
+
+Seed 2 ran on Modal (L4, amendment 3), compared with the Modal base (`../rerun_modal/analysis.json`):
+accuracy 0.327 → 0.343 (+0.017, CI −0.050..+0.083); CF_joint 0.442 → 0.466 (+0.023, CI −0.113..+0.152,
+46 items); operative changed 0.21 → 0.11, invariant kept 0.67 → 0.83 (19 and 46 pairs).
+**Verdict: seed 1 refuted, seed 2 refuted, so H1 as pre-registered is refuted.** Answer-only SFT
+(Modal): accuracy 0.73, operative changed 0.39 → 0.00, invariant kept 0.51 → 0.97 on 80 jointly
+correct items; balanced CF 0.45 → 0.49.

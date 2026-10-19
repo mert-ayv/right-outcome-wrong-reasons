@@ -19,7 +19,8 @@ accuracy cost?
   does not teach the rule. The SFT model mostly answers with the first state named in the text, a
   shortcut that is right on 86% of the cases; when the decisive date moves, its answer changes in 0% of
   the pairs (outcome RL: 21%, untrained: about 38%). Accuracy cannot see this; the twins can. The
-  pre-registered balanced metric stays at chance and misses it (seed 1 refuted, seed 2 pending).
+  pre-registered balanced metric stays at chance and misses it: H1 as pre-registered is refuted
+  (both seeds).
 - **Contribution:** an open environment with solver-verified counterfactual twins on real statutes,
   pre-registered evaluation, and per-item records for every run.
 - **Thesis:** outcome signals alone do not produce faithful statutory reasoning; the thesis tests
@@ -101,17 +102,19 @@ flowchart LR
 > the legal rule**. The answer-only model reaches 73% by picking *the first state named in the text*,
 > and stops reacting to the date that decides the case.
 
-| | Untrained | Outcome RL (GRPO, seed 1) | Answer-only SFT |
-|---|---|---|---|
-| **Accuracy** | 33% | **55%** | **73%** |
-| Answers equal "first state named" (a shortcut, legally correct 86% of the time) | 32% | 60% | **84%** |
-| **Answer changes when the decisive date moves** (should be 100%) | | 38% → **21%** | 39% → **0%** |
-| Answer stays when an irrelevant date moves (should be 100%) | | 63% → 79% | 51% → 98% |
-| Balanced CF, the pre-registered metric (0.5 = chance) | | 0.51 → 0.50 | 0.45 → 0.49 |
-| Same answer with the reasoning removed | 6% | 26% | 92%¹ |
+| | Untrained | Outcome RL, seed 1 | Outcome RL, seed 2 | Answer-only SFT |
+|---|---|---|---|---|
+| **Accuracy** | 33% | **55%** | 34% | **73%** |
+| Answers equal "first state named" (a shortcut, legally correct 86% of the time) | 32% | 60% | 35% | **84%** |
+| **Answer changes when the decisive date moves** (should be 100%) | | 38% → **21%** | 21% → **11%** | 39% → **0%** |
+| Answer stays when an irrelevant date moves (should be 100%) | | 63% → 79% | 67% → 83% | 51% → 98% |
+| Balanced CF, the pre-registered metric (0.5 = chance) | | 0.51 → 0.50 | 0.44 → 0.47 | 0.45 → 0.49 |
+| Pre-registered verdict for H1 | | refuted | refuted | (control) |
+| Same answer with the reasoning removed | 6% | 26% | 16% | 92%¹ |
 
 Rows 3 to 5 compare each model with the untrained model on the cases both answer correctly (before →
-after). ¹ The SFT model was trained to answer without reasoning, so this row says little for it.
+after; 19 to 29 operative pairs per comparison, so these rows are descriptive). Seed 1 ran on a Colab T4,
+seed 2 and SFT on a Modal L4, each compared with the untrained model on the same machine. ¹ The SFT model was trained to answer without reasoning, so this row says little for it.
 
 **Findings**
 1. **Accuracy rises, the rule is not learned.** Both training methods raise accuracy; neither makes
@@ -122,14 +125,15 @@ after). ¹ The SFT model was trained to answer without reasoning, so this row sa
    descriptive).
 3. **Only the twins reveal it.** On accuracy, the shortcut model looks best. On the twins it never
    changes its answer when the legal answer changes.
-4. **The pre-registered summary metric hides this.** Balanced CF stays near 0.5, because a model that
-   never changes its answer keeps every invariant twin. Under the pre-registered rule, seed 1 counts
-   as *refuted*; the operative row above is the informative one (reported as descriptive).
+4. **H1 as pre-registered is refuted; the summary metric hides the pattern.** Both seeds count as
+   *refuted*: balanced CF stays near 0.5, because a model that never changes its answer keeps every
+   invariant twin. The operative row is the informative one: in both seeds and in SFT the trained
+   model reacts less to the decisive date, even in seed 2, whose accuracy barely rose (descriptive).
 5. **Not specific to RL.** Answer-only SFT shows the effect more strongly than outcome RL, so the cause
    is training on answers, not reinforcement learning as such.
 
-**Running (19 October):** GRPO seed 2 (completes the pre-registered H1 test) and the H2 pilot
-(proof-step rewards, [`pilot/PREREGISTRATION_H2.md`](pilot/PREREGISTRATION_H2.md)) on Modal.
+**Running (19 October):** the H2 pilot (proof-step rewards,
+[`pilot/PREREGISTRATION_H2.md`](pilot/PREREGISTRATION_H2.md)) on Modal.
 Records and analyses: [`pilot/results/`](pilot/results/), details in [pilot/README.md](pilot/README.md).
 
 ## License and credits
