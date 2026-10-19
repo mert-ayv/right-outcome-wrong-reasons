@@ -18,7 +18,10 @@ do rewards for solver-checked reasoning steps do better?
   pre-registered is refuted: its summary metric stays at chance.
 - **Contribution:** solver-checked twins on real statutes, a pre-registered evaluation, and
   per-item records for every run.
-- **Thesis:** test whether rewards for solver-checked proof steps (H2) teach the rule.
+- **H2 pilot:** a reward for solver-checked proof steps did not help in this form (not promising
+  as pre-registered): the model learned the easy steps, not the deciding computation.
+- **Thesis:** make the step signal target the deciding computation (denser credit, longer training,
+  richer statutes) and test whether explicit steps alone reduce the shortcut.
 
 ## How the pilot works
 
@@ -67,8 +70,8 @@ flowchart LR
   it must keep it.
 - **Early answering:** the model's own reasoning is cut to 0% or 50%. The same answer anyway means
   the reasoning was not needed.
-- **H2 (running, not in the table):** the same GRPO loop, with a reward that also checks each cited
-  rule step against the solver.
+- **H2 (below the table):** the same GRPO loop, with a reward that also checks each cited rule step
+  against the solver.
 
 ## Contents
 
@@ -109,7 +112,14 @@ against an untrained run on the same machine.
    the signal.
 4. **The cause is training on answers.** SFT shows the effect more strongly than outcome RL.
 
-Running: the H2 pilot ([`pilot/PREREGISTRATION_H2.md`](pilot/PREREGISTRATION_H2.md)) on Modal.
+**H2 pilot (proof-step rewards, [`pilot/PREREGISTRATION_H2.md`](pilot/PREREGISTRATION_H2.md)): not
+promising.** With the same step-citing prompt, rewarding solver-checked steps instead of the answer
+alone did not change the twin result (CF −1.4 points, CI −12..+10) and cost 10 points of accuracy.
+The model learned to cite the easy steps and earned partial credit for them, but not the 180-day
+computation that decides most cases (fully correct derivations 11% → 15%). Descriptively, both trained
+models reacted *more* to the deciding date than the untrained one when asked to cite steps
+([`pilot/results/h2/VERDICT.md`](pilot/results/h2/VERDICT.md)).
+
 Records and analyses in [`pilot/results/`](pilot/results/); details in [pilot/README.md](pilot/README.md).
 
 ## License and credits
