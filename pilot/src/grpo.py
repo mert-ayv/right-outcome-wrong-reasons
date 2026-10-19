@@ -77,6 +77,7 @@ def main():
 
     random.seed(args.seed)
     mx.random.seed(args.seed)
+    mx.set_cache_limit(1 << 30)  # cap MLX's buffer cache at 1 GB to keep the peak low on 16 GB machines
     model, tokenizer = load(args.model)
     model.freeze()
     lora_cfg = {"rank": args.rank, "scale": args.lora_scale, "dropout": 0.0}
@@ -110,7 +111,7 @@ def main():
         prompt_tokens = [tokenizer.encode(chat_prompt(tokenizer, r["prompt"]), add_special_tokens=False) for r in batch]
         rollout_prompts = [p for p in prompt_tokens for _ in range(args.group_size)]
         res = batch_generate(model, tokenizer, rollout_prompts, max_tokens=args.max_tokens, sampler=sampler,
-                             completion_batch_size=len(rollout_prompts), prefill_batch_size=8,
+                             completion_batch_size=min(8, len(rollout_prompts)), prefill_batch_size=1, prefill_step_size=512,
                              return_token_ids=True)
         mx.clear_cache()
         t_gen = time.time() - t0

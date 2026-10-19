@@ -25,8 +25,9 @@ def generate(model, tokenizer, prompts, max_tokens, batch_size):
     outs = []
     for i in range(0, len(prompts), batch_size):
         toks = [tokenizer.encode(p, add_special_tokens=False) for p in prompts[i:i + batch_size]]
+        # Small prefill batches and chunks keep the memory peak low on 16 GB machines
         res = batch_generate(model, tokenizer, toks, max_tokens=max_tokens, completion_batch_size=batch_size,
-                             prefill_batch_size=batch_size, return_token_ids=True)
+                             prefill_batch_size=1, prefill_step_size=512, return_token_ids=True)
         outs.extend(zip(res.texts, [len(t) for t in res.token_ids]))
         mx.clear_cache()
     return outs
@@ -43,6 +44,7 @@ def main():
     args = ap.parse_args()
 
     t0 = time.time()
+    mx.set_cache_limit(1 << 30)  # cap MLX's buffer cache at 1 GB to keep the peak low on 16 GB machines
     model, tokenizer = load(args.model, adapter_path=args.adapter)
     test = load_jsonl(args.test)
     flat, index = [], []
