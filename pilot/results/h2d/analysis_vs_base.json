@@ -1,0 +1,98 @@
+{
+ "base": {
+  "acc": 0.44333333333333336,
+  "trunc0_n": 100,
+  "trunc0_agree": 0.37,
+  "trunc0_parse_fail": 0.0,
+  "trunc0_agree_parsed": 0.37,
+  "trunc50_n": 100,
+  "trunc50_agree": 0.73,
+  "trunc50_parse_fail": 0.0,
+  "trunc50_agree_parsed": 0.73
+ },
+ "runs": {
+  "h2c-sft-step100": {
+   "acc_base": 0.44333333333333336,
+   "acc": 0.7433333333333333,
+   "d_acc": 0.29999999999999993,
+   "joint_items": 94,
+   "joint_pairs": [
+    30,
+    94
+   ],
+   "cf_joint_base": 0.4648936170212766,
+   "cf_joint": 0.5340425531914894,
+   "d_cf_joint": 0.06914893617021284,
+   "joint_operative_base": 0.1,
+   "joint_operative": 0.1,
+   "joint_invariant_base": 0.8297872340425532,
+   "joint_invariant": 0.9680851063829787,
+   "cf_own": 0.5397385745634958,
+   "cf_own_base": 0.4967532467532467,
+   "own_pairs": [
+    94,
+    223
+   ],
+   "tokens_right": 148.29596412556054,
+   "tokens_wrong": 115.96103896103897,
+   "trunc0_n": 100,
+   "trunc0_agree": 0.04,
+   "trunc0_parse_fail": 0.0,
+   "trunc0_agree_parsed": 0.04,
+   "trunc50_n": 100,
+   "trunc50_agree": 0.01,
+   "trunc50_parse_fail": 0.0,
+   "trunc50_agree_parsed": 0.01,
+   "d_acc_ci95": [
+    0.22000000000000008,
+    0.3766666666666667
+   ],
+   "d_cf_joint_ci95": [
+    -0.0049251379038612875,
+    0.14347826086956517
+   ]
+  },
+  "h2d-sft-step100": {
+   "acc_base": 0.44333333333333336,
+   "acc": 0.82,
+   "d_acc": 0.3766666666666666,
+   "joint_items": 101,
+   "joint_pairs": [
+    35,
+    101
+   ],
+   "cf_joint_base": 0.47793493635077794,
+   "cf_joint": 0.9329561527581329,
+   "d_cf_joint": 0.455021216407355,
+   "joint_operative_base": 0.11428571428571428,
+   "joint_operative": 0.8857142857142857,
+   "joint_invariant_base": 0.8415841584158416,
+   "joint_invariant": 0.9801980198019802,
+   "cf_own": 0.88899706223953,
+   "cf_own_base": 0.4967532467532467,
+   "own_pairs": [
+    119,
+    246
+   ],
+   "tokens_right": 212.33739837398375,
+   "tokens_wrong": 141.40740740740742,
+   "trunc0_n": 100,
+   "trunc0_agree": 0.07,
+   "trunc0_parse_fail": 0.0,
+   "trunc0_agree_parsed": 0.07,
+   "trunc50_n": 100,
+   "trunc50_agree": 0.12,
+   "trunc50_parse_fail": 0.0,
+   "trunc50_agree_parsed": 0.12,
+   "d_acc_ci95": [
+    0.3,
+    0.4533333333333333
+   ],
+   "d_cf_joint_ci95": [
+    0.3653590425531915,
+    0.5357142857142857
+   ]
+  }
+ },
+ "verdicts": {}
+}
