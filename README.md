@@ -95,7 +95,7 @@ flowchart LR
 | `Expose_CodeX_Stanford_Ayvazoglu.pdf`, `expose/expose.tex` | first version, written for the CodeX Stanford scholarship call |
 | `pilot/` | H1 pilot: code, data, results ([pilot/README.md](pilot/README.md)) |
 
-## Results at a glance
+## Pilot result in one table
 
 > **In one sentence:** training on correct answers makes the model score higher **without learning
 > the legal rule**. The answer-only model reaches 73% by picking *the first state named in the text*,
