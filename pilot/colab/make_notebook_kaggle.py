@@ -32,6 +32,7 @@ Settings: Accelerator GPU T4 x2 (one GPU is used), Internet on. Outputs: /kaggle
 
 code(f"""
 !pip install -q unsloth vllm vllm-bnb-plugin 2>&1 | tail -2
+!pip uninstall -y -q torchaudio  # Kaggle's torchaudio is built for another CUDA version and breaks vLLM imports
 !wget -q -N {RAW}/colab/pilot_t4c.py {RAW}/colab/pilot_data.zip {RAW}/src/analyze.py && ls -la
 !nvidia-smi --query-gpu=name,memory.total --format=csv
 """)
