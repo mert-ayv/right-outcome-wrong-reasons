@@ -1,0 +1,57 @@
+{
+ "base": {
+  "acc": 0.32666666666666666,
+  "trunc0_n": 100,
+  "trunc0_agree": 0.06,
+  "trunc0_parse_fail": 0.0,
+  "trunc0_agree_parsed": 0.06,
+  "trunc50_n": 100,
+  "trunc50_agree": 0.17,
+  "trunc50_parse_fail": 0.0,
+  "trunc50_agree_parsed": 0.17
+ },
+ "runs": {
+  "sft-s1-step60": {
+   "acc_base": 0.32666666666666666,
+   "acc": 0.73,
+   "d_acc": 0.4033333333333333,
+   "joint_items": 80,
+   "joint_pairs": [
+    23,
+    80
+   ],
+   "cf_joint_base": 0.45190217391304344,
+   "cf_joint": 0.4875,
+   "d_cf_joint": 0.03559782608695655,
+   "joint_operative_base": 0.391304347826087,
+   "joint_operative": 0.0,
+   "joint_invariant_base": 0.5125,
+   "joint_invariant": 0.975,
+   "cf_own": 0.5054963639438526,
+   "cf_own_base": 0.44586167800453513,
+   "own_pairs": [
+    81,
+    219
+   ],
+   "tokens_right": 7.315068493150685,
+   "tokens_wrong": 7.604938271604938,
+   "trunc0_n": 100,
+   "trunc0_agree": 0.92,
+   "trunc0_parse_fail": 0.0,
+   "trunc0_agree_parsed": 0.92,
+   "trunc50_n": 100,
+   "trunc50_agree": 0.9,
+   "trunc50_parse_fail": 0.0,
+   "trunc50_agree_parsed": 0.9,
+   "d_acc_ci95": [
+    0.33666666666666667,
+    0.4766666666666667
+   ],
+   "d_cf_joint_ci95": [
+    -0.06315789473684208,
+    0.1306366047745358
+   ]
+  }
+ },
+ "verdicts": {}
+}

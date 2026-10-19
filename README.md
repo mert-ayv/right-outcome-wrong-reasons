@@ -15,11 +15,11 @@ accuracy cost?
   rule), Qwen3-4B is trained with outcome-only RL (GRPO) and with answer-only SFT. Faithfulness is
   measured with solver-verified twins (does the answer change exactly when the legal answer changes?)
   and by removing the model's own reasoning. Metrics and decision rule are pre-registered.
-- **Finding:** training raises accuracy (33% to 55% with GRPO, 73% with SFT) but does not teach the
-  rule. On cases both models answer correctly, the GRPO model reacts less to every date edit, decisive
-  or not, so balanced CF stays at chance (0.51 to 0.50; seed 1 refuted under the pre-registered rule,
-  seed 2 pending). SFT is the extreme case: 73% correct while its answer follows a decisive date change
-  in 2.5% of pairs. Answers increasingly come without the stated reasoning (6% to 26% with GRPO).
+- **Finding:** training raises accuracy (33% to 55% with outcome RL, 73% with answer-only SFT) but
+  does not teach the rule. The SFT model mostly answers with the first state named in the text, a
+  shortcut that is right on 86% of the cases; when the decisive date moves, its answer changes in 0% of
+  the pairs (outcome RL: 21%, untrained: about 38%). Accuracy cannot see this; the twins can. The
+  pre-registered balanced metric stays at chance and misses it (seed 1 refuted, seed 2 pending).
 - **Contribution:** an open environment with solver-verified counterfactual twins on real statutes,
   pre-registered evaluation, and per-item records for every run.
 - **Thesis:** outcome signals alone do not produce faithful statutory reasoning; the thesis tests
@@ -95,22 +95,42 @@ flowchart LR
 | `Expose_CodeX_Stanford_Ayvazoglu.pdf`, `expose/expose.tex` | first version, written for the CodeX Stanford scholarship call |
 | `pilot/` | H1 pilot: code, data, results ([pilot/README.md](pilot/README.md)) |
 
-## Pilot result in one table
+## Results at a glance
 
-Qwen3-4B, outcome-reward GRPO, 60 steps, one seed, OpenExempt Task AE, 300 test cases.
+> **In one sentence:** training on correct answers makes the model score higher **without learning
+> the legal rule**. The answer-only model reaches 73% by picking *the first state named in the text*,
+> and stops reacting to the date that decides the case.
 
-| | Base | After 60 steps |
-|---|---|---|
-| Accuracy | 33.3% | 55.3% |
-| Answer changes when the legally decisive date changes | 46% | 25% |
-| Same answer with the reasoning removed | 6% | 24% |
-| Counterfactual faithfulness (balanced, 0.5 = chance) | 0.54 | 0.50 |
+| | Untrained | Outcome RL (GRPO, seed 1) | Answer-only SFT |
+|---|---|---|---|
+| **Accuracy** | 33% | **55%** | **73%** |
+| Answers equal "first state named" (a shortcut, legally correct 86% of the time) | 32% | 60% | **84%** |
+| **Answer changes when the decisive date moves** (should be 100%) | | 38% → **21%** | 39% → **0%** |
+| Answer stays when an irrelevant date moves (should be 100%) | | 63% → 79% | 51% → 98% |
+| Balanced CF, the pre-registered metric (0.5 = chance) | | 0.51 → 0.50 | 0.45 → 0.49 |
+| Same answer with the reasoning removed | 6% | 26% | 92%¹ |
 
-Exploratory run, one seed. Accuracy rose while the model tracked the operative fact less and
-relied less on its stated reasoning. The CF figures are computed on each model's own correct items,
-not on jointly correct items as planned, and the 4.4-point drop falls in the range where the rule
-written before the run asks for another seed: **H1 is pending.** Confirmatory reruns are specified
-in [pilot/PREREGISTRATION.md](pilot/PREREGISTRATION.md). Details in [pilot/README.md](pilot/README.md).
+Rows 3 to 5 compare each model with the untrained model on the cases both answer correctly (before →
+after). ¹ The SFT model was trained to answer without reasoning, so this row says little for it.
+
+**Findings**
+1. **Accuracy rises, the rule is not learned.** Both training methods raise accuracy; neither makes
+   the model follow the date that decides the case.
+2. **The shortcut has a name.** "Take the first state named" ignores the dates but is right on 86% of
+   the test cases (an artefact of how OpenExempt generates cases). 84% of the SFT model's answers
+   and 60% of the GRPO model's answers coincide with it (`pilot/results/shortcut_analysis.md`,
+   descriptive).
+3. **Only the twins reveal it.** On accuracy, the shortcut model looks best. On the twins it never
+   changes its answer when the legal answer changes.
+4. **The pre-registered summary metric hides this.** Balanced CF stays near 0.5, because a model that
+   never changes its answer keeps every invariant twin. Under the pre-registered rule, seed 1 counts
+   as *refuted*; the operative row above is the informative one (reported as descriptive).
+5. **Not specific to RL.** Answer-only SFT shows the effect more strongly than outcome RL, so the cause
+   is training on answers, not reinforcement learning as such.
+
+**Running (19 October):** GRPO seed 2 (completes the pre-registered H1 test) and the H2 pilot
+(proof-step rewards, [`pilot/PREREGISTRATION_H2.md`](pilot/PREREGISTRATION_H2.md)) on Modal.
+Records and analyses: [`pilot/results/`](pilot/results/), details in [pilot/README.md](pilot/README.md).
 
 ## License and credits
 
