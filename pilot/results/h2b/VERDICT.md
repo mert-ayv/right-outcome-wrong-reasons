@@ -38,6 +38,10 @@ Descriptive, not pre-registered:
   cases), so a solver-checked step reward cannot tell the template from the computation. Checking
   steps against the solver is not enough when the training cases do not separate the rule from the
   shortcut. Counterfactual twins in training, or step rewards computed on twins, are the next test.
+- **GRPO removes what the warm start could compute.** On the 42 test cases where the first-state
+  shortcut is wrong, the SFT warm start answers 13 correctly (8 with a fully correct derivation).
+  After GRPO the four runs answer 0 to 5 correctly, with no correct derivation. The shortcut is right
+  on 800 of the 1,000 training cases, so it earns more reward than the model's own computation.
 - The SFT warm start already shows the pattern (operative changed 0.12 on jointly correct items,
   5 of 60 twin derivations correct). GRPO with either reward strengthens it: against the warm
   start, CF on jointly correct items falls by 2 to 4 points, and the process-reward CIs exclude zero.
