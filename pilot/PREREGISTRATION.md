@@ -14,7 +14,7 @@ The rule was fixed before the exploratory run, in two places:
    > H1 supported if outcome-GRPO raises accuracy by at least 5 points and lowers CF by at least 5
    > points vs base at matched accuracy in both seeds (bootstrap 95% CI excluding 0). Refuted if CF
    > rises or moves less than 2 points
-2. Exposé v2 (`../expose/expose_v2.tex`, 2026-10-18), which specifies CF "on items that both
+2. Exposé v2 (thesis proposal draft of 2026-10-18; not part of the public repository), which specifies CF "on items that both
    compared models answer correctly" and adds: "A 2 to 5 point drop triggers a third seed."
 
 This plan follows exposé v2's metric definition (jointly correct items) instead of "matched

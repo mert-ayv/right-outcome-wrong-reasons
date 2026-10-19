@@ -1,6 +1,6 @@
 # H1 pilot: does outcome-only RL make legal reasoning less faithful?
 
-A one-day pilot for the exposé "Right Outcome, Wrong Reasons?" (`../expose/expose_v2.tex`). It tests
+A one-day pilot for the thesis proposal "Right Outcome, Wrong Reasons?". It tests
 the first hypothesis (H1): training a language model with outcome-only reinforcement learning on a
 statutory task raises accuracy but lowers the faithfulness of its reasoning.
 

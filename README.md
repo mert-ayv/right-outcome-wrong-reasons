@@ -1,6 +1,6 @@
 # Right Outcome, Wrong Reasons? Outcome vs. proof-step rewards for faithful statutory reasoning
 
-Research proposal and pilot by Mert Ayvazoglu (M.Sc. Information Systems, TUM), October 2026.
+Pilot study by Mert Ayvazoglu (M.Sc. Information Systems, TUM), October 2026.
 
 **Question.** Does training on right answers teach a language model the legal rule behind them, and
 do rewards for solver-checked reasoning steps do better?
@@ -74,9 +74,7 @@ flowchart LR
 
 | Path | What |
 |---|---|
-| `Expose_RLVR_Faithfulness_Ayvazoglu_v2.pdf`, `expose/expose_v2.tex` | current one-page exposé (v2, generic thesis version) |
-| `Expose_CodeX_Stanford_Ayvazoglu.pdf`, `expose/expose.tex` | first version, written for the CodeX Stanford scholarship call |
-| `pilot/` | H1 pilot: code, data, results ([pilot/README.md](pilot/README.md)) |
+| `pilot/` | code, data, pre-registrations and results ([pilot/README.md](pilot/README.md)) |
 
 ## Pilot result in one table
 
