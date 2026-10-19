@@ -139,3 +139,7 @@ GPU type are the only intended differences. Comparisons and the verdict follow a
 "Kaggle" replaced by "Modal": Modal runs are compared with the Modal base. The queued Kaggle version
 is cancelled once the Modal run has started; if Kaggle finishes first instead, its results are
 reported as an additional replication and do not change the verdict.
+
+Note (2026-10-19, 10:40): the queued Kaggle version is **not** cancelled (author's decision). If
+it runs, its results are reported as an additional replication in either order of completion and
+do not change the verdict, which uses the Modal runs as stated in amendment 3.
