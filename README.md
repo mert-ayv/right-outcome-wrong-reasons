@@ -18,12 +18,12 @@ do rewards for solver-checked reasoning steps do better?
   pre-registered is refuted: its summary metric stays at chance.
 - **Contribution:** solver-checked twins on real statutes, a pre-registered evaluation, and
   per-item records for every run.
-- **H2 pilots:** two versions of a reward for solver-checked proof steps did not help (not
-  promising as pre-registered). In the second, the models wrote derivations the solver accepts and
-  copied them unchanged when the deciding date moved: correct steps, still the shortcut. Training
-  data where the shortcuts do not pay (H2c) kept more correct derivations but did not fix this.
-- **Thesis:** separate the date arithmetic from the legal rule (date tool or larger model), then
-  compare outcome and step rewards on data and twins where the shortcuts fail.
+- **Follow-up pilots:** a reward for solver-checked proof steps never beat the outcome reward (four
+  pre-registered pilots). Without help on dates, models wrote derivations the solver accepts and
+  copied them unchanged when the deciding date moved. With a date tool, the warm start follows the
+  facts, and outcome RL raises accuracy to 88 to 96% without losing faithfulness.
+- **Thesis:** find when outcome RL does erode faithfulness (training data where the shortcut pays,
+  larger models, richer statutes) and why step rewards of this form hurt.
 
 ## How the pilot works
 
@@ -72,8 +72,8 @@ flowchart LR
   it must keep it.
 - **Early answering:** the model's own reasoning is cut to 0% or 50%. The same answer anyway means
   the reasoning was not needed.
-- **H2, H2b and H2c (below the table):** the same GRPO loop, with a reward that also checks each cited
-  rule step against the solver.
+- **Follow-up pilots (below the table):** the same GRPO loop with a reward that also checks each
+  cited rule step against the solver, balanced training data, and a date tool.
 
 ## Contents
 
@@ -114,40 +114,36 @@ against an untrained run on the same machine.
    the signal.
 4. **The cause is training on answers.** SFT shows the effect more strongly than outcome RL.
 
-**H2 pilot (proof-step rewards, [`pilot/PREREGISTRATION_H2.md`](pilot/PREREGISTRATION_H2.md)): not
-promising.** With the same step-citing prompt, rewarding solver-checked steps instead of the answer
-alone did not change the twin result (CF −1.4 points, CI −12..+10) and cost 10 points of accuracy.
-The model learned to cite the easy steps and earned partial credit for them, but not the 180-day
-computation that decides most cases (fully correct derivations 11% → 15%). Descriptively, both trained
-models reacted *more* to the deciding date than the untrained one when asked to cite steps
-([`pilot/results/h2/VERDICT.md`](pilot/results/h2/VERDICT.md)).
+## Follow-up pilots: proof-step rewards, balanced data, a date tool
 
-**H2b pilot (finer step reward after an SFT warm start, two seeds,
-[`pilot/PREREGISTRATION_H2B.md`](pilot/PREREGISTRATION_H2B.md)): not promising.** Process vs outcome
-reward: CF −0.7 and −1.5 points, same accuracy. Both rewards led to the shortcut. The four trained
-models answer with the first state named in 94 to 100% of cases, and their accuracy (83 to 86%) is
-that shortcut's 86%. Their derivations look right: the solver accepts 70 to 76% as fully correct.
-When the deciding date moves, the process-reward models cite the same steps, day counts included,
-in every case. For originals with a perfect derivation, the twin's derivation is never correct (0 of
-61 to 66 per run). A step reward checked against the solver also pays for a template, as long as
-the training cases do not separate the rule from the shortcut
-([`pilot/results/h2b/VERDICT.md`](pilot/results/h2b/VERDICT.md)).
+Each step was pre-registered before it ran ([`pilot/PREREGISTRATION_H2*.md`](pilot/)); all use
+Qwen3-4B, GRPO for 60 to 120 steps, and the same 300 test cases and twins.
 
-**H2c pilot (H2b on training data where the shortcuts do not pay,
-[`pilot/PREREGISTRATION_H2C.md`](pilot/PREREGISTRATION_H2C.md)): not promising, and the balanced
-data did not help either.** Each shortcut was right on 56% of training cases instead of 80 to 90%.
-Process vs outcome reward: CF +1.5 and −1.6 points. Against H2b, twin-consistent accuracy fell by
-3.8 points on average. One thing changed: on the 42 test cases where the first state is wrong, H2b's
-trained models had no correct derivation left, while three of the four H2c models kept 8 to 19. But
-when the deciding date moves, they still cite the same steps in 88 to 95% of cases. The derivations
-are not computed from the dates, so the next test separates the date arithmetic from the rule
-([`pilot/results/h2c/VERDICT.md`](pilot/results/h2c/VERDICT.md)).
+| Pilot | What changed | Process vs outcome reward, CF points¹ | What it showed | Verdict |
+|---|---|---|---|---|
+| [H2](pilot/results/h2/VERDICT.md) | reward also checks the cited rule steps | −1.4 | the model learned the easy steps, not the 180-day computation | not promising |
+| [H2b](pilot/results/h2b/VERDICT.md) | finer step reward, SFT warm start, two seeds | −0.7, −1.5 | both rewards end at the first-state shortcut; derivations the solver accepts are copied unchanged to the twins (0 of 61 to 66 correct) | not promising |
+| [H2c](pilot/results/h2c/VERDICT.md) | training data where the shortcuts are right on 56%, not 80 to 90% | +1.5, −1.6 | derivations are still copied across twins (88 to 95%): they are not computed from the dates | not promising, data did not help |
+| [H2d](pilot/results/h2d/VERDICT.md) | a date tool gives each date as a day number (warm start only) | | derivations follow the facts: twin-consistent accuracy² 44% → 72%, CF 0.93 | gate passed |
+| [H2e](pilot/results/h2e/VERDICT.md) | GRPO from the H2d warm start, with the tool | −3.1, −4.0 | outcome RL: accuracy 88 and 96%, twin-consistent 80 and 87%, no loss of faithfulness; the step reward cost 21 to 26 points of accuracy | not promising; outcome RL does not erode |
+
+¹ Process minus outcome on jointly correct items, per seed; +5 needed for "promising".
+² Original and all of its twins answered correctly.
+
+**What the follow-ups show**
+1. **Derivations can pass the solver's check and still ignore the facts** (H2b): when the shortcut
+   is right on most training cases, a step reward pays for a template as much as for the rule.
+2. **The obstacle was calendar arithmetic, not the rule** (H2c, H2d): with day numbers given, the
+   same warm start follows the deciding date.
+3. **From that start, outcome-only RL improved accuracy without eroding faithfulness, and the step
+   reward made things worse** (H2e). The remaining errors sit in one legal step: which states fall
+   inside the 730-day window.
 
 Records and analyses in [`pilot/results/`](pilot/results/); details in [pilot/README.md](pilot/README.md).
 
 ## License and credits
 
-Code: MIT (see `LICENSE`). The pilot data in `pilot/data/` and `pilot/colab/pilot_data.zip` is
-generated with the [OpenExempt](https://github.com/servantez/OpenExempt) framework (Servantez,
+Code: MIT (see `LICENSE`). The pilot data in `pilot/data/`, `pilot/data_h2c/` and `pilot/colab/pilot_data*.zip`
+is generated with the [OpenExempt](https://github.com/servantez/OpenExempt) framework (Servantez,
 Lawsky, Jain, Linna, Hammond; Findings of ACL 2026), licensed CC BY 4.0, and remains under that
 licence.

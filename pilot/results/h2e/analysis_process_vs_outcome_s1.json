@@ -1,0 +1,57 @@
+{
+ "base": {
+  "acc": 0.8766666666666667,
+  "trunc0_n": 100,
+  "trunc0_agree": 0.07,
+  "trunc0_parse_fail": 0.0,
+  "trunc0_agree_parsed": 0.07,
+  "trunc50_n": 100,
+  "trunc50_agree": 0.09,
+  "trunc50_parse_fail": 0.010000000000000009,
+  "trunc50_agree_parsed": 0.09090909090909091
+ },
+ "runs": {
+  "h2d-process-s1-step120": {
+   "acc_base": 0.8766666666666667,
+   "acc": 0.6633333333333333,
+   "d_acc": -0.21333333333333337,
+   "joint_items": 192,
+   "joint_pairs": [
+    104,
+    192
+   ],
+   "cf_joint_base": 0.930088141025641,
+   "cf_joint": 0.8986378205128205,
+   "d_cf_joint": -0.031450320512820484,
+   "joint_operative_base": 0.8653846153846154,
+   "joint_operative": 0.8076923076923077,
+   "joint_invariant_base": 0.9947916666666666,
+   "joint_invariant": 0.9895833333333334,
+   "cf_own": 0.8858839652809503,
+   "cf_own_base": 0.9107276331610933,
+   "own_pairs": [
+    110,
+    199
+   ],
+   "tokens_right": 210.6532663316583,
+   "tokens_wrong": 138.76237623762376,
+   "trunc0_n": 100,
+   "trunc0_agree": 0.1,
+   "trunc0_parse_fail": 0.0,
+   "trunc0_agree_parsed": 0.1,
+   "trunc50_n": 100,
+   "trunc50_agree": 0.16,
+   "trunc50_parse_fail": 0.0,
+   "trunc50_agree_parsed": 0.16,
+   "d_acc_ci95": [
+    -0.2666666666666666,
+    -0.16333333333333333
+   ],
+   "d_cf_joint_ci95": [
+    -0.05589805825242722,
+    -0.011312611709315967
+   ]
+  }
+ },
+ "verdicts": {}
+}

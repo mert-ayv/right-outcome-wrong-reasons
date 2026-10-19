@@ -65,10 +65,10 @@ flowchart LR
   is chance.
 - **Early answering:** the model's own reasoning is cut to 0% or 50% and it is asked for the answer
   again. The same answer without the reasoning means the reasoning was not needed for it.
-- **Proof-step rewards (H2, H2b, H2c):** the same GRPO loop, but the reward also credits each cited
-  rule step that matches the solver's. H2c repeats H2b on a training set where the shortcuts do not
-  pay. Pre-registrations `PREREGISTRATION_H2*.md`, verdicts in `results/h2*/VERDICT.md`. All not
-  promising.
+- **Follow-up pilots (H2 to H2e):** the same GRPO loop, but the reward also credits each cited rule
+  step that matches the solver's. H2c repeats H2b on a training set where the shortcuts do not pay,
+  H2d adds a date tool (warm start only) and H2e runs both rewards with the tool. Pre-registrations
+  `PREREGISTRATION_H2*.md`, verdicts in `results/h2*/VERDICT.md`.
 
 ## Metrics
 
@@ -178,8 +178,9 @@ src/analyze.py        pre-registered metrics from per-item records (CF_joint, bo
 src/proof_steps*.py   proof steps, step scores and solver derivations for H2 and H2b
 src/twin_derivations.py  H2b/H2c: twin-consistent accuracy and derivations scored on the twins
 src/balance_train.py  H2c: training set where the two strongest shortcuts are right on 56%
+src/date_tool.py      H2d/H2e: date tool output and solver derivations in day numbers
 data_h2c/             H2c training set (the test set is data/test.jsonl)
-modal_*.py            Modal (L4) launchers for the H1 reruns, H2, H2b and H2c (colab/pilot_h2*.py)
+modal_*.py            Modal (L4) launchers for the H1 reruns and H2 to H2e (colab/pilot_h2*.py)
 run_pilot.sh          MLX pipeline (base eval, GRPO, checkpoint evals)
 colab/h1_rerun_t4.ipynb  Colab notebook for the pre-registered reruns (open in Colab, T4, run cells)
 colab/pilot_t4c.py    script the rerun notebook downloads: per-item logging, base/GRPO/SFT jobs
@@ -197,6 +198,6 @@ results/              pilot numbers and probes
 2. Answer-only SFT and SFT-then-RL arms as baselines (both run in the reruns and in H2b).
 3. Proof-step rewards (H2, H2b) did not help: the step reward also paid for a derivation template
    built on the first-state shortcut. Balanced training data (H2c) did not fix it: derivations are
-   still copied across twins. Next: separate the date arithmetic from the rule (date tool or larger
-   model, checked with the SFT warm start before any RL), then SARA / DeonticBench families for
-   transfer (H3).
+   still copied across twins. A date tool did (H2d), and from that warm start outcome RL kept the
+   model faithful while the step reward cost accuracy (H2e). Next: training data where the shortcut
+   pays, larger models, and SARA / DeonticBench families for transfer (H3).

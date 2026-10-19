@@ -1,0 +1,221 @@
+{
+ "base": {
+  "acc": 0.44333333333333336,
+  "trunc0_n": 100,
+  "trunc0_agree": 0.37,
+  "trunc0_parse_fail": 0.0,
+  "trunc0_agree_parsed": 0.37,
+  "trunc50_n": 100,
+  "trunc50_agree": 0.73,
+  "trunc50_parse_fail": 0.0,
+  "trunc50_agree_parsed": 0.73
+ },
+ "runs": {
+  "h2d-outcome-s1-step120": {
+   "acc_base": 0.44333333333333336,
+   "acc": 0.8766666666666667,
+   "d_acc": 0.43333333333333335,
+   "joint_items": 113,
+   "joint_pairs": [
+    36,
+    113
+   ],
+   "cf_joint_base": 0.48979842674532936,
+   "cf_joint": 0.9261307767944936,
+   "d_cf_joint": 0.43633235004916426,
+   "joint_operative_base": 0.1388888888888889,
+   "joint_operative": 0.8611111111111112,
+   "joint_invariant_base": 0.8407079646017699,
+   "joint_invariant": 0.9911504424778761,
+   "cf_own": 0.9107276331610933,
+   "cf_own_base": 0.4967532467532467,
+   "own_pairs": [
+    117,
+    263
+   ],
+   "tokens_right": 224.13688212927758,
+   "tokens_wrong": 162.21621621621622,
+   "trunc0_n": 100,
+   "trunc0_agree": 0.07,
+   "trunc0_parse_fail": 0.0,
+   "trunc0_agree_parsed": 0.07,
+   "trunc50_n": 100,
+   "trunc50_agree": 0.09,
+   "trunc50_parse_fail": 0.010000000000000009,
+   "trunc50_agree_parsed": 0.09090909090909091,
+   "d_acc_ci95": [
+    0.36000000000000004,
+    0.5033333333333334
+   ],
+   "d_cf_joint_ci95": [
+    0.34813084112149534,
+    0.5162337662337663
+   ]
+  },
+  "h2d-outcome-s2-step120": {
+   "acc_base": 0.44333333333333336,
+   "acc": 0.9566666666666667,
+   "d_acc": 0.5133333333333333,
+   "joint_items": 132,
+   "joint_pairs": [
+    43,
+    132
+   ],
+   "cf_joint_base": 0.49779774489076817,
+   "cf_joint": 0.8799330514446794,
+   "d_cf_joint": 0.3821353065539112,
+   "joint_operative_base": 0.13953488372093023,
+   "joint_operative": 0.7674418604651163,
+   "joint_invariant_base": 0.8560606060606061,
+   "joint_invariant": 0.9924242424242424,
+   "cf_own": 0.9076655052264808,
+   "cf_own_base": 0.4967532467532467,
+   "own_pairs": [
+    123,
+    287
+   ],
+   "tokens_right": 216.55052264808361,
+   "tokens_wrong": 232.0,
+   "trunc0_n": 100,
+   "trunc0_agree": 0.04,
+   "trunc0_parse_fail": 0.0,
+   "trunc0_agree_parsed": 0.04,
+   "trunc50_n": 100,
+   "trunc50_agree": 0.06,
+   "trunc50_parse_fail": 0.0,
+   "trunc50_agree_parsed": 0.06,
+   "d_acc_ci95": [
+    0.45666666666666667,
+    0.5700000000000001
+   ],
+   "d_cf_joint_ci95": [
+    0.2931453573164804,
+    0.464228652582993
+   ]
+  },
+  "h2d-process-s1-step120": {
+   "acc_base": 0.44333333333333336,
+   "acc": 0.6633333333333333,
+   "d_acc": 0.21999999999999997,
+   "joint_items": 87,
+   "joint_pairs": [
+    33,
+    87
+   ],
+   "cf_joint_base": 0.47648902821316613,
+   "cf_joint": 0.9487983281086729,
+   "d_cf_joint": 0.4723092998955068,
+   "joint_operative_base": 0.09090909090909091,
+   "joint_operative": 0.9090909090909091,
+   "joint_invariant_base": 0.8620689655172413,
+   "joint_invariant": 0.9885057471264368,
+   "cf_own": 0.8858839652809503,
+   "cf_own_base": 0.4967532467532467,
+   "own_pairs": [
+    110,
+    199
+   ],
+   "tokens_right": 210.6532663316583,
+   "tokens_wrong": 138.76237623762376,
+   "trunc0_n": 100,
+   "trunc0_agree": 0.1,
+   "trunc0_parse_fail": 0.0,
+   "trunc0_agree_parsed": 0.1,
+   "trunc50_n": 100,
+   "trunc50_agree": 0.16,
+   "trunc50_parse_fail": 0.0,
+   "trunc50_agree_parsed": 0.16,
+   "d_acc_ci95": [
+    0.14,
+    0.2966666666666667
+   ],
+   "d_cf_joint_ci95": [
+    0.3798915605846299,
+    0.5515086206896551
+   ]
+  },
+  "h2d-process-s2-step120": {
+   "acc_base": 0.44333333333333336,
+   "acc": 0.7,
+   "d_acc": 0.2566666666666666,
+   "joint_items": 91,
+   "joint_pairs": [
+    32,
+    91
+   ],
+   "cf_joint_base": 0.4699519230769231,
+   "cf_joint": 0.9366414835164836,
+   "d_cf_joint": 0.4666895604395605,
+   "joint_operative_base": 0.09375,
+   "joint_operative": 0.90625,
+   "joint_invariant_base": 0.8461538461538461,
+   "joint_invariant": 0.967032967032967,
+   "cf_own": 0.8813852813852814,
+   "cf_own_base": 0.4967532467532467,
+   "own_pairs": [
+    110,
+    210
+   ],
+   "tokens_right": 211.2047619047619,
+   "tokens_wrong": 139.75555555555556,
+   "trunc0_n": 100,
+   "trunc0_agree": 0.09,
+   "trunc0_parse_fail": 0.0,
+   "trunc0_agree_parsed": 0.09,
+   "trunc50_n": 100,
+   "trunc50_agree": 0.15,
+   "trunc50_parse_fail": 0.0,
+   "trunc50_agree_parsed": 0.15,
+   "d_acc_ci95": [
+    0.1766666666666667,
+    0.33333333333333337
+   ],
+   "d_cf_joint_ci95": [
+    0.37047101449275366,
+    0.5501453488372092
+   ]
+  },
+  "h2d-sft-step100": {
+   "acc_base": 0.44333333333333336,
+   "acc": 0.82,
+   "d_acc": 0.3766666666666666,
+   "joint_items": 101,
+   "joint_pairs": [
+    35,
+    101
+   ],
+   "cf_joint_base": 0.47793493635077794,
+   "cf_joint": 0.9329561527581329,
+   "d_cf_joint": 0.455021216407355,
+   "joint_operative_base": 0.11428571428571428,
+   "joint_operative": 0.8857142857142857,
+   "joint_invariant_base": 0.8415841584158416,
+   "joint_invariant": 0.9801980198019802,
+   "cf_own": 0.88899706223953,
+   "cf_own_base": 0.4967532467532467,
+   "own_pairs": [
+    119,
+    246
+   ],
+   "tokens_right": 212.33739837398375,
+   "tokens_wrong": 141.40740740740742,
+   "trunc0_n": 100,
+   "trunc0_agree": 0.07,
+   "trunc0_parse_fail": 0.0,
+   "trunc0_agree_parsed": 0.07,
+   "trunc50_n": 100,
+   "trunc50_agree": 0.12,
+   "trunc50_parse_fail": 0.0,
+   "trunc50_agree_parsed": 0.12,
+   "d_acc_ci95": [
+    0.3,
+    0.4533333333333333
+   ],
+   "d_cf_joint_ci95": [
+    0.3653590425531915,
+    0.5357142857142857
+   ]
+  }
+ },
+ "verdicts": {}
+}
