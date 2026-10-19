@@ -37,9 +37,13 @@ def run_job(job: str) -> str:
 
 @app.function(timeout=12 * 3600)
 def pipeline() -> list:
-    out = []
-    for job in JOBS:
-        out.append(run_job.remote(job))
+    """Base first (skipped if its records exist), then both GRPO runs in parallel on separate GPUs.
+    The runs write to separate folders and record files; only summaries.jsonl is shared."""
+    out = [run_job.remote(JOBS[0])]
+    print(out[-1], flush=True)
+    calls = [run_job.spawn(job) for job in JOBS[1:]]
+    for c in calls:
+        out.append(c.get())
         print(out[-1], flush=True)
     return out
 
