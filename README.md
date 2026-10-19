@@ -27,8 +27,27 @@ accuracy cost?
 
 ## How the pilot works
 
-All arms use the same frozen Qwen3-4B (4-bit); training changes only a small LoRA adapter (under 1% of
-the parameters). The arms differ only in the training signal, and all are scored the same way.
+The pilot asks one question: **when a model is trained only on whether its final answer is right,
+does it learn the legal rule, or does it learn to guess right without following the rule?** Three
+versions of the same model answer the same test cases:
+
+- **Untrained (the reference point).** Qwen3-4B as released. Every effect is measured against it:
+  "faithfulness drops" only means something if we know how faithful the model was before training.
+- **Outcome RL (GRPO), the method under test.** The model writes its own reasoning and answer, 8 times
+  per case, and is rewarded only for a correct final answer. This is how today's reasoning models are
+  trained (reinforcement learning with verifiable rewards), and H1 claims it rewards right answers
+  reached for the wrong reasons.
+- **Answer-only SFT (the control).** The model is shown the correct answers for the same cases and
+  learns to copy them, without any reinforcement learning. It receives the same information as GRPO
+  (which answer is right) but learns it differently. If SFT shows the same loss of faithfulness, the
+  cause is training on answers in general, not RL specifically.
+- **What decides "faithful".** The rule is executable, so a solver knows for every case which facts
+  matter. Each test case has twins in which one date is moved: if the legal answer changes, a faithful
+  model must change its answer too; if it does not, the answer must stay. A model that guesses from
+  surface cues fails this test even when its accuracy is high.
+
+All three use the same frozen Qwen3-4B (4-bit); training changes only a small LoRA adapter (under 1%
+of the parameters). They differ only in the training signal, and all are scored the same way.
 
 ```mermaid
 flowchart LR
