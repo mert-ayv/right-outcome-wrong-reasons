@@ -27,53 +27,46 @@ answer-only SFT arm) with per-item logging and the pre-registered metric are spe
 
 ## How the experiment works
 
-All arms train only a small LoRA adapter (rank 16, under 1% of the parameters) on a frozen 4-bit
-Qwen3-4B. The arms differ in the training signal.
+All arms use the same frozen Qwen3-4B (4-bit); training changes only a small LoRA adapter (under 1% of
+the parameters). The arms differ only in the training signal, and all are scored the same way.
 
 ```mermaid
 flowchart LR
-    D[("1,000 training cases<br/>(domicile history + question)")]
-
-    subgraph GRPO["Outcome RL (GRPO), 60 steps"]
+    D["1,000 training cases<br/>(domicile history<br/>+ question)"]
+    subgraph U["Untrained"]
         direction TB
-        G1["Draw 4 cases"] --> G2["Model answers each case 8 times<br/>(reasoning + FINAL ANSWER, temperature 1)"]
-        G2 --> G3["Reward per answer:<br/>1 if the jurisdiction set is exact, else 0<br/><b>reasoning is not checked</b>"]
-        G3 --> G4["Compare within each group of 8:<br/>above group mean = positive advantage"]
-        G4 --> G5["Update the LoRA adapter:<br/>make the better answers more likely"]
-        G5 -->|next step| G1
+        U1["Qwen3-4B<br/>as released"]
     end
-
-    subgraph SFT["Answer-only SFT, 60 steps"]
+    subgraph R["Outcome RL (GRPO), 60 steps"]
         direction TB
-        S1["Draw 4 cases"] --> S2["Target text: 'FINAL ANSWER: Federal, Oregon'<br/>(no reasoning)"]
-        S2 --> S3["Update the LoRA adapter:<br/>imitate the target"]
-        S3 -->|next step| S1
+        R1["4 cases per step,<br/>8 own answers each"]
+        R2["Reward 1 if the final<br/>answer is right;<br/>reasoning unchecked"]
+        R3["Answers above the<br/>group mean become<br/>more likely"]
+        R1 --> R2 --> R3
     end
-
-    D --> GRPO
-    D --> SFT
-    GRPO --> C[("Checkpoints<br/>step 30, step 60")]
-    SFT --> C
-    C --> E["Evaluation on 300 test cases<br/>(see next figure)"]
+    subgraph S["Answer-only SFT, 60 steps"]
+        direction TB
+        S1["4 cases per step"]
+        S2["Target: 'FINAL ANSWER:<br/>Federal, Oregon',<br/>no reasoning"]
+        S3["Imitate<br/>the target"]
+        S1 --> S2 --> S3
+    end
+    D --> U & R & S
+    U & R & S --> E["Answer 300 test<br/>cases and their<br/>solver-checked twins"]
+    E --> M1["Accuracy"]
+    E --> M2["Counterfactual<br/>faithfulness"]
+    E --> M3["Early answering:<br/>same answer without<br/>the reasoning?"]
+    M1 & M2 & M3 --> H{"H1: accuracy up,<br/>faithfulness down?"}
 ```
 
-The thesis variant (H2, not part of this pilot) changes only the reward box of the GRPO loop: it
-credits each cited rule application that the solver re-executes and that belongs to the gold proof
-tree, instead of the final answer alone.
-
-```mermaid
-flowchart TB
-    T["Test case<br/>(e.g. Oregon 2018, Arizona 03/2023, Pennsylvania 10/2024)"]
-    T --> O["Original: model answers"]
-    T --> OP["Operative twin:<br/>one date shifted so the solver's answer changes"]
-    T --> IN["Invariant twin:<br/>one date shifted, solver's answer stays"]
-    O --> A["Accuracy"]
-    O & OP --> CF1["Does the answer change?<br/>(should: yes)"]
-    O & IN --> CF2["Does the answer stay?<br/>(should: yes)"]
-    CF1 & CF2 --> CF["Counterfactual faithfulness (CF)<br/>mean of both rates, 0.5 = chance"]
-    O --> TR["Early answering: cut the model's own reasoning<br/>to 0% / 50%, ask for the answer again"]
-    TR --> TA["Same answer without the reasoning?<br/>(high = reasoning not needed)"]
-```
+- **Twins:** for each test case one move date is shifted. In an *operative* twin the solver's legal
+  answer changes, so a model that applies the rule must change its answer; in an *invariant* twin it
+  does not, so the answer must stay. Counterfactual faithfulness (CF) is the mean of both rates; 0.5
+  is chance.
+- **Early answering:** the model's own reasoning is cut to 0% or 50% and it is asked for the answer
+  again. The same answer without the reasoning means the reasoning was not needed for it.
+- **Thesis variant (H2, not in this pilot):** the same GRPO loop, but the reward credits each cited
+  rule application that the solver re-executes and that belongs to the gold proof tree.
 
 ## Metrics
 
