@@ -10,6 +10,9 @@ Jobs:
   --job grpo --reward process  --seed S  from the SFT adapter: 0.5 x outcome + 0.5 x step_score_v2
 GRPO: 120 steps on the other 600 training cases; checkpoint 120 is evaluated.
 
+H2c (PREREGISTRATION_H2C.md) is the same pipeline on a balanced training set: --name h2c --data
+pilot_data_h2c.zip.
+
 Run with: UNSLOTH_VLLM_NO_FLASHINFER=1 VLLM_USE_FLASHINFER_SAMPLER=0 H1_OUT=... python -u pilot_h2b.py --job ...
 """
 import argparse
@@ -26,16 +29,19 @@ ap.add_argument("--reward", default="outcome", choices=["outcome", "process"])
 ap.add_argument("--seed", type=int, default=1)
 ap.add_argument("--steps", type=int, default=120)
 ap.add_argument("--sft_steps", type=int, default=100)
+ap.add_argument("--name", default="h2b", help="run-name prefix, e.g. h2c")
+ap.add_argument("--data", default="pilot_data.zip", help="zip with train.jsonl and test.jsonl")
 args_cli = ap.parse_args()
 
 OUT = os.environ.get("H1_OUT", "/content/h1_rerun")  # Kaggle: /kaggle/working/h1_rerun
 os.makedirs(f"{OUT}/records", exist_ok=True)
-_final = {"base": "h2b-base", "sft": f"h2b-sft-step{args_cli.sft_steps}"}.get(
-    args_cli.job, f"h2b-{args_cli.reward}-s{args_cli.seed}-step{args_cli.steps}")
+NAME = args_cli.name
+_final = {"base": f"{NAME}-base", "sft": f"{NAME}-sft-step{args_cli.sft_steps}"}.get(
+    args_cli.job, f"{NAME}-{args_cli.reward}-s{args_cli.seed}-step{args_cli.steps}")
 if os.path.exists(f"{OUT}/records/{_final}.jsonl"):
     print(f"SKIP {_final}: records already exist", flush=True)
     raise SystemExit(0)
-with zipfile.ZipFile("pilot_data.zip") as z:
+with zipfile.ZipFile(args_cli.data) as z:
     z.extractall("data")
 train = [json.loads(l) for l in open("data/train.jsonl")]
 test = [json.loads(l) for l in open("data/test.jsonl")]
@@ -151,13 +157,13 @@ def evaluate(tag, lora=None, trunc_n=100):
 
 
 if args_cli.job == "base":
-    evaluate("h2b-base")
+    evaluate(f"{NAME}-base")
 else:
     from datasets import Dataset
     from transformers import TrainerCallback
 
     eval_steps = [args_cli.sft_steps] if args_cli.job == "sft" else [args_cli.steps]
-    run = "h2b-sft" if args_cli.job == "sft" else f"h2b-{args_cli.reward}-s{args_cli.seed}"
+    run = f"{NAME}-sft" if args_cli.job == "sft" else f"{NAME}-{args_cli.reward}-s{args_cli.seed}"
 
     class EvalOnSave(TrainerCallback):
         def on_save(self, args, state, control, **kwargs):
@@ -179,7 +185,7 @@ else:
         from peft import set_peft_model_state_dict
         from safetensors.torch import load_file
         from trl import GRPOConfig, GRPOTrainer
-        init = f"{OUT}/h2b-sft/checkpoint-{args_cli.sft_steps}/adapter_model.safetensors"
+        init = f"{OUT}/{NAME}-sft/checkpoint-{args_cli.sft_steps}/adapter_model.safetensors"
         if not os.path.exists(init):
             raise SystemExit(f"Error: SFT warm start missing: {init}")
         res = set_peft_model_state_dict(model, load_file(init))
