@@ -25,14 +25,6 @@ accuracy cost?
 - **Thesis:** outcome signals alone do not produce faithful statutory reasoning; the thesis tests
   whether rewards for solver-verified proof steps (H2) do.
 
-## Contents
-
-| Path | What |
-|---|---|
-| `Expose_RLVR_Faithfulness_Ayvazoglu_v2.pdf`, `expose/expose_v2.tex` | current one-page exposé (v2, generic thesis version) |
-| `Expose_CodeX_Stanford_Ayvazoglu.pdf`, `expose/expose.tex` | first version, written for the CodeX Stanford scholarship call |
-| `pilot/` | H1 pilot: code, data, results ([pilot/README.md](pilot/README.md)) |
-
 ## How the pilot works
 
 All arms use the same frozen Qwen3-4B (4-bit); training changes only a small LoRA adapter (under 1% of
@@ -75,6 +67,14 @@ flowchart LR
   again. The same answer without the reasoning means the reasoning was not needed for it.
 - **Thesis variant (H2, not in this pilot):** the same GRPO loop, but the reward credits each cited
   rule application that the solver re-executes and that belongs to the gold proof tree.
+
+## Contents
+
+| Path | What |
+|---|---|
+| `Expose_RLVR_Faithfulness_Ayvazoglu_v2.pdf`, `expose/expose_v2.tex` | current one-page exposé (v2, generic thesis version) |
+| `Expose_CodeX_Stanford_Ayvazoglu.pdf`, `expose/expose.tex` | first version, written for the CodeX Stanford scholarship call |
+| `pilot/` | H1 pilot: code, data, results ([pilot/README.md](pilot/README.md)) |
 
 ## Pilot result in one table
 
