@@ -112,6 +112,12 @@ against an untrained run on the same machine.
 Running: the H2 pilot ([`pilot/PREREGISTRATION_H2.md`](pilot/PREREGISTRATION_H2.md)) on Modal.
 Records and analyses in [`pilot/results/`](pilot/results/); details in [pilot/README.md](pilot/README.md).
 
+## AI use
+
+Code, analyses and text were developed with Claude Code as a programming and writing assistant.
+Research question, study design, pre-registration and interpretation were discussed and decided by
+the author; all numbers are computed from the published records.
+
 ## License and credits
 
 Code: MIT (see `LICENSE`). The pilot data in `pilot/data/` and `pilot/colab/pilot_data.zip` is
