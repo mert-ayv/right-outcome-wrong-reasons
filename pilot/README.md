@@ -65,8 +65,10 @@ flowchart LR
   is chance.
 - **Early answering:** the model's own reasoning is cut to 0% or 50% and it is asked for the answer
   again. The same answer without the reasoning means the reasoning was not needed for it.
-- **Thesis variant (H2, not in this pilot):** the same GRPO loop, but the reward credits each cited
-  rule application that the solver re-executes and that belongs to the gold proof tree.
+- **Proof-step rewards (H2, H2b):** the same GRPO loop, but the reward also credits each cited rule
+  step that matches the solver's. Pre-registered in `PREREGISTRATION_H2.md` and
+  `PREREGISTRATION_H2B.md`, verdicts in `results/h2/VERDICT.md` and `results/h2b/VERDICT.md`. Both
+  not promising.
 
 ## Metrics
 
@@ -173,6 +175,9 @@ src/common.py         prompt format, answer parser, outcome reward
 src/evaluate.py       MLX evaluation (accuracy, CF, early answering, token lengths)
 src/grpo.py           MLX outcome-reward GRPO with LoRA
 src/analyze.py        pre-registered metrics from per-item records (CF_joint, bootstrap, verdict)
+src/proof_steps*.py   proof steps, step scores and solver derivations for H2 and H2b
+src/twin_derivations.py  H2b: twin-consistent accuracy and derivations scored on the twins
+modal_*.py            Modal (L4) launchers for the H1 reruns, H2 and H2b (colab/pilot_h2*.py)
 run_pilot.sh          MLX pipeline (base eval, GRPO, checkpoint evals)
 colab/h1_rerun_t4.ipynb  Colab notebook for the pre-registered reruns (open in Colab, T4, run cells)
 colab/pilot_t4c.py    script the rerun notebook downloads: per-item logging, base/GRPO/SFT jobs
@@ -187,5 +192,7 @@ results/              pilot numbers and probes
 ## Next steps
 
 1. Two more seeds and about 200 steps (about 10 to 20 A100-hours) to test H1 properly.
-2. Answer-only SFT and SFT-then-RL arms as baselines.
-3. Proof-step reward (H2) and SARA / DeonticBench families for transfer (H3).
+2. Answer-only SFT and SFT-then-RL arms as baselines (both run in the reruns and in H2b).
+3. Proof-step rewards (H2, H2b) did not help: the step reward also paid for a derivation template
+   built on the first-state shortcut. Next: counterfactual twins in training or step rewards scored
+   on twins, and SARA / DeonticBench families for transfer (H3).

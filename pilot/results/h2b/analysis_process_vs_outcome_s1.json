@@ -1,0 +1,57 @@
+{
+ "base": {
+  "acc": 0.86,
+  "trunc0_n": 100,
+  "trunc0_agree": 0.02,
+  "trunc0_parse_fail": 0.0,
+  "trunc0_agree_parsed": 0.02,
+  "trunc50_n": 100,
+  "trunc50_agree": 0.0,
+  "trunc50_parse_fail": 0.0,
+  "trunc50_agree_parsed": 0.0
+ },
+ "runs": {
+  "h2b-process-s1-step120": {
+   "acc_base": 0.86,
+   "acc": 0.86,
+   "d_acc": 0.0,
+   "joint_items": 258,
+   "joint_pairs": [
+    95,
+    258
+   ],
+   "cf_joint_base": 0.5052631578947369,
+   "cf_joint": 0.49806201550387597,
+   "d_cf_joint": -0.007201142390860893,
+   "joint_operative_base": 0.010526315789473684,
+   "joint_operative": 0.0,
+   "joint_invariant_base": 1.0,
+   "joint_invariant": 0.9961240310077519,
+   "cf_own": 0.49806201550387597,
+   "cf_own_base": 0.5052631578947369,
+   "own_pairs": [
+    95,
+    258
+   ],
+   "tokens_right": 155.8798449612403,
+   "tokens_wrong": 161.47619047619048,
+   "trunc0_n": 100,
+   "trunc0_agree": 0.02,
+   "trunc0_parse_fail": 0.0,
+   "trunc0_agree_parsed": 0.02,
+   "trunc50_n": 100,
+   "trunc50_agree": 0.02,
+   "trunc50_parse_fail": 0.0,
+   "trunc50_agree_parsed": 0.02,
+   "d_acc_ci95": [
+    0.0,
+    0.0
+   ],
+   "d_cf_joint_ci95": [
+    -0.020097286226318456,
+    0.0
+   ]
+  }
+ },
+ "verdicts": {}
+}
