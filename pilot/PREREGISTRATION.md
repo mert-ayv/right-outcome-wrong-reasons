@@ -127,3 +127,15 @@ decision rule:
 
 Verdict: seed 1 uses the Colab runs (Colab base vs Colab `grpo-s1`); seed 2 uses the Kaggle runs
 (Kaggle base vs Kaggle `grpo-s2`). The overall rule is unchanged. The SFT comparison uses Kaggle base.
+
+## Amendment 3 (2026-10-19, before the Modal run started)
+
+The Kaggle run of amendment 2 stayed queued for over an hour (no free T4 in Kaggle's pool), and
+no Colab GPU was available. The remaining runs therefore move to Modal (free starter credit):
+`modal_app.py` runs `colab/pilot_t4c.py` unchanged on one **NVIDIA L4** (instead of a T4), in the
+order `base` → `sft-s1` → `grpo-s2` (SFT before seed 2, so the short run cannot be lost to a
+time limit). The L4 supports bfloat16, so Unsloth computes in bf16 instead of fp16; this and the
+GPU type are the only intended differences. Comparisons and the verdict follow amendment 2, with
+"Kaggle" replaced by "Modal": Modal runs are compared with the Modal base. The queued Kaggle version
+is cancelled once the Modal run has started; if Kaggle finishes first instead, its results are
+reported as an additional replication and do not change the verdict.
