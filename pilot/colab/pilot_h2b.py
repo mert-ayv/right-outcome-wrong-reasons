@@ -11,7 +11,7 @@ Jobs:
 GRPO: 120 steps on the other 600 training cases; checkpoint 120 is evaluated.
 
 H2c (PREREGISTRATION_H2C.md) is the same pipeline on a balanced training set: --name h2c --data
-pilot_data_h2c.zip.
+pilot_data_h2c.zip. H2d (PREREGISTRATION_H2D.md) adds --tool: the date tool output in every prompt.
 
 Run with: UNSLOTH_VLLM_NO_FLASHINFER=1 VLLM_USE_FLASHINFER_SAMPLER=0 H1_OUT=... python -u pilot_h2b.py --job ...
 """
@@ -31,6 +31,7 @@ ap.add_argument("--steps", type=int, default=120)
 ap.add_argument("--sft_steps", type=int, default=100)
 ap.add_argument("--name", default="h2b", help="run-name prefix, e.g. h2c")
 ap.add_argument("--data", default="pilot_data.zip", help="zip with train.jsonl and test.jsonl")
+ap.add_argument("--tool", action="store_true", help="H2d: add the date tool output (src/date_tool.py) to every prompt")
 args_cli = ap.parse_args()
 
 OUT = os.environ.get("H1_OUT", "/content/h1_rerun")  # Kaggle: /kaggle/working/h1_rerun
@@ -51,7 +52,13 @@ sys.path.insert(0, os.getcwd())
 from proof_steps_v2 import full_derivation_correct, gold_steps_v2, solver_trace, step_score_v2, tag_prompt_v2  # noqa: E402
 import random  # noqa: E402
 
+if args_cli.tool:
+    from date_tool import add_tool, tool_trace, twin_case  # noqa: E402
 for r in train + test:
+    if args_cli.tool:
+        r["prompt"] = add_tool(r["prompt"], r["case"])
+        for tw in r.get("twins", []):
+            tw["prompt"] = add_tool(tw["prompt"], twin_case(r["case"], tw))
     r["prompt"] = tag_prompt_v2(r["prompt"])
     r["steps"] = gold_steps_v2(r["case"])[0]
     for tw in r.get("twins", []):
@@ -174,7 +181,7 @@ else:
     if args_cli.job == "sft":
         from trl import SFTConfig, SFTTrainer
         ds = Dataset.from_list([{"prompt": chat_prompt(r["prompt"]),
-                                 "completion": solver_trace(r["steps"], sorted(r["answer"]))} for r in train_sft])
+                                 "completion": tool_trace(r["case"])[0] if args_cli.tool else solver_trace(r["steps"], sorted(r["answer"]))} for r in train_sft])
         cfg = SFTConfig(
             output_dir=f"{OUT}/{run}", seed=0, max_steps=args_cli.sft_steps, save_steps=args_cli.sft_steps,
             logging_steps=10, per_device_train_batch_size=4, gradient_accumulation_steps=1, learning_rate=1e-4,
