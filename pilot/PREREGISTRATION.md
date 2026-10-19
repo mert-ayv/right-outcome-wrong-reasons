@@ -106,3 +106,24 @@ with scale 2.0 (equal to alpha 32 / r 16) on the **top 12 of 36 layers** only (a
 not fit in 16 GB memory at usable speed); Adam instead of 8-bit AdamW; a different random number
 generator. Because the stack differs, this run is reported separately as a replication and does
 **not** enter the H1 verdict above. The same decision rule is applied to it and reported.
+
+## Amendment 2 (2026-10-19, before the Kaggle run started)
+
+Status before this amendment: on Colab, `base`, `grpo-s1` (steps 30 and 60) and `grpo-s2` step 30
+finished (records in `results/rerun/records/`, summary in `results/rerun/STATUS.md`). The free
+Colab runtime stopped during `grpo-s2`, and no Colab GPU was available afterwards on either account.
+The `mlx-grpo-s1` run of amendment 1 was stopped before producing results (fan noise) and is dropped.
+
+The remaining runs move to a free Kaggle notebook (T4, one GPU via `CUDA_VISIBLE_DEVICES=0`), with
+the same script (`colab/pilot_t4c.py`, output folder set by `H1_OUT`), data, settings, metrics and
+decision rule:
+
+- `base` is evaluated again on Kaggle, so that Kaggle runs are compared with a base model evaluated
+  on the same machine and software versions.
+- `grpo-s2` runs **from scratch** (60 steps). The Colab checkpoint cannot be transferred (upload
+  size), so the Colab `grpo-s2` step-30 records are kept as supplementary and do not enter the
+  verdict.
+- `sft-s1` runs as specified.
+
+Verdict: seed 1 uses the Colab runs (Colab base vs Colab `grpo-s1`); seed 2 uses the Kaggle runs
+(Kaggle base vs Kaggle `grpo-s2`). The overall rule is unchanged. The SFT comparison uses Kaggle base.

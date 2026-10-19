@@ -30,7 +30,7 @@ ap.add_argument("--seed", type=int, default=1)
 ap.add_argument("--steps", type=int, default=60)
 args_cli = ap.parse_args()
 
-OUT = "/content/h1_rerun"
+OUT = os.environ.get("H1_OUT", "/content/h1_rerun")  # Kaggle: /kaggle/working/h1_rerun
 os.makedirs(f"{OUT}/records", exist_ok=True)
 _final = "base" if args_cli.job == "base" else f"{args_cli.job}-s{args_cli.seed}-step{args_cli.steps}"
 if os.path.exists(f"{OUT}/records/{_final}.jsonl"):
