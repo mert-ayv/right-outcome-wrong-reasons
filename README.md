@@ -20,9 +20,10 @@ do rewards for solver-checked reasoning steps do better?
   per-item records for every run.
 - **H2 pilots:** two versions of a reward for solver-checked proof steps did not help (not
   promising as pre-registered). In the second, the models wrote derivations the solver accepts and
-  copied them unchanged when the deciding date moved: correct steps, still the shortcut.
-- **Thesis:** train and reward on cases that separate the rule from the shortcut (counterfactual
-  twins in training, step rewards scored on twins), then test transfer to richer statutes.
+  copied them unchanged when the deciding date moved: correct steps, still the shortcut. Training
+  data where the shortcuts do not pay (H2c) kept more correct derivations but did not fix this.
+- **Thesis:** separate the date arithmetic from the legal rule (date tool or larger model), then
+  compare outcome and step rewards on data and twins where the shortcuts fail.
 
 ## How the pilot works
 
@@ -71,7 +72,7 @@ flowchart LR
   it must keep it.
 - **Early answering:** the model's own reasoning is cut to 0% or 50%. The same answer anyway means
   the reasoning was not needed.
-- **H2 and H2b (below the table):** the same GRPO loop, with a reward that also checks each cited
+- **H2, H2b and H2c (below the table):** the same GRPO loop, with a reward that also checks each cited
   rule step against the solver.
 
 ## Contents
@@ -131,6 +132,16 @@ in every case. For originals with a perfect derivation, the twin's derivation is
 61 to 66 per run). A step reward checked against the solver also pays for a template, as long as
 the training cases do not separate the rule from the shortcut
 ([`pilot/results/h2b/VERDICT.md`](pilot/results/h2b/VERDICT.md)).
+
+**H2c pilot (H2b on training data where the shortcuts do not pay,
+[`pilot/PREREGISTRATION_H2C.md`](pilot/PREREGISTRATION_H2C.md)): not promising, and the balanced
+data did not help either.** Each shortcut was right on 56% of training cases instead of 80 to 90%.
+Process vs outcome reward: CF +1.5 and −1.6 points. Against H2b, twin-consistent accuracy fell by
+3.8 points on average. One thing changed: on the 42 test cases where the first state is wrong, H2b's
+trained models had no correct derivation left, while three of the four H2c models kept 8 to 19. But
+when the deciding date moves, they still cite the same steps in 88 to 95% of cases. The derivations
+are not computed from the dates, so the next test separates the date arithmetic from the rule
+([`pilot/results/h2c/VERDICT.md`](pilot/results/h2c/VERDICT.md)).
 
 Records and analyses in [`pilot/results/`](pilot/results/); details in [pilot/README.md](pilot/README.md).
 

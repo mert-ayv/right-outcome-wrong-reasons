@@ -1,0 +1,180 @@
+{
+ "base": {
+  "acc": 0.7433333333333333,
+  "trunc0_n": 100,
+  "trunc0_agree": 0.04,
+  "trunc0_parse_fail": 0.0,
+  "trunc0_agree_parsed": 0.04,
+  "trunc50_n": 100,
+  "trunc50_agree": 0.01,
+  "trunc50_parse_fail": 0.0,
+  "trunc50_agree_parsed": 0.01
+ },
+ "runs": {
+  "h2c-outcome-s1-step120": {
+   "acc_base": 0.7433333333333333,
+   "acc": 0.7433333333333333,
+   "d_acc": 0.0,
+   "joint_items": 200,
+   "joint_pairs": [
+    80,
+    200
+   ],
+   "cf_joint_base": 0.54,
+   "cf_joint": 0.52,
+   "d_cf_joint": -0.020000000000000018,
+   "joint_operative_base": 0.1,
+   "joint_operative": 0.05,
+   "joint_invariant_base": 0.98,
+   "joint_invariant": 0.99,
+   "cf_own": 0.5229462837515504,
+   "cf_own_base": 0.5397385745634958,
+   "own_pairs": [
+    94,
+    223
+   ],
+   "tokens_right": 142.29596412556054,
+   "tokens_wrong": 105.67532467532467,
+   "trunc0_n": 100,
+   "trunc0_agree": 0.03,
+   "trunc0_parse_fail": 0.0,
+   "trunc0_agree_parsed": 0.03,
+   "trunc50_n": 100,
+   "trunc50_agree": 0.08,
+   "trunc50_parse_fail": 0.0,
+   "trunc50_agree_parsed": 0.08,
+   "d_acc_ci95": [
+    -0.043333333333333335,
+    0.043333333333333335
+   ],
+   "d_cf_joint_ci95": [
+    -0.0547945205479452,
+    0.014018691588785104
+   ]
+  },
+  "h2c-outcome-s2-step120": {
+   "acc_base": 0.7433333333333333,
+   "acc": 0.8433333333333334,
+   "d_acc": 0.10000000000000009,
+   "joint_items": 207,
+   "joint_pairs": [
+    82,
+    207
+   ],
+   "cf_joint_base": 0.5428007540944975,
+   "cf_joint": 0.5440673971957111,
+   "d_cf_joint": 0.0012666431012136048,
+   "joint_operative_base": 0.10975609756097561,
+   "joint_operative": 0.12195121951219512,
+   "joint_invariant_base": 0.9758454106280193,
+   "joint_invariant": 0.966183574879227,
+   "cf_own": 0.5452711788435679,
+   "cf_own_base": 0.5397385745634958,
+   "own_pairs": [
+    97,
+    253
+   ],
+   "tokens_right": 151.97233201581028,
+   "tokens_wrong": 134.72340425531914,
+   "trunc0_n": 100,
+   "trunc0_agree": 0.02,
+   "trunc0_parse_fail": 0.0,
+   "trunc0_agree_parsed": 0.02,
+   "trunc50_n": 100,
+   "trunc50_agree": 0.1,
+   "trunc50_parse_fail": 0.0,
+   "trunc50_agree_parsed": 0.1,
+   "d_acc_ci95": [
+    0.04999999999999993,
+    0.15000000000000002
+   ],
+   "d_cf_joint_ci95": [
+    -0.04370391378332383,
+    0.046937953263497145
+   ]
+  },
+  "h2c-process-s1-step120": {
+   "acc_base": 0.7433333333333333,
+   "acc": 0.85,
+   "d_acc": 0.10666666666666669,
+   "joint_items": 200,
+   "joint_pairs": [
+    76,
+    200
+   ],
+   "cf_joint_base": 0.5467105263157894,
+   "cf_joint": 0.5385526315789474,
+   "d_cf_joint": -0.00815789473684203,
+   "joint_operative_base": 0.11842105263157894,
+   "joint_operative": 0.09210526315789473,
+   "joint_invariant_base": 0.975,
+   "joint_invariant": 0.985,
+   "cf_own": 0.5310124049619848,
+   "cf_own_base": 0.5397385745634958,
+   "own_pairs": [
+    98,
+    255
+   ],
+   "tokens_right": 154.92549019607844,
+   "tokens_wrong": 148.15555555555557,
+   "trunc0_n": 100,
+   "trunc0_agree": 0.03,
+   "trunc0_parse_fail": 0.0,
+   "trunc0_agree_parsed": 0.03,
+   "trunc50_n": 100,
+   "trunc50_agree": 0.01,
+   "trunc50_parse_fail": 0.0,
+   "trunc50_agree_parsed": 0.01,
+   "d_acc_ci95": [
+    0.04999999999999993,
+    0.16333333333333333
+   ],
+   "d_cf_joint_ci95": [
+    -0.05470383275261326,
+    0.03830495928941524
+   ]
+  },
+  "h2c-process-s2-step120": {
+   "acc_base": 0.7433333333333333,
+   "acc": 0.8333333333333334,
+   "d_acc": 0.09000000000000008,
+   "joint_items": 202,
+   "joint_pairs": [
+    80,
+    202
+   ],
+   "cf_joint_base": 0.53384900990099,
+   "cf_joint": 0.5188737623762376,
+   "d_cf_joint": -0.014975247524752433,
+   "joint_operative_base": 0.0875,
+   "joint_operative": 0.0625,
+   "joint_invariant_base": 0.9801980198019802,
+   "joint_invariant": 0.9752475247524752,
+   "cf_own": 0.524875,
+   "cf_own_base": 0.5397385745634958,
+   "own_pairs": [
+    96,
+    250
+   ],
+   "tokens_right": 149.716,
+   "tokens_wrong": 120.82,
+   "trunc0_n": 100,
+   "trunc0_agree": 0.03,
+   "trunc0_parse_fail": 0.0,
+   "trunc0_agree_parsed": 0.03,
+   "trunc50_n": 100,
+   "trunc50_agree": 0.03,
+   "trunc50_parse_fail": 0.010000000000000009,
+   "trunc50_agree_parsed": 0.030303030303030304,
+   "d_acc_ci95": [
+    0.036666666666666625,
+    0.1433333333333333
+   ],
+   "d_cf_joint_ci95": [
+    -0.0561094996374184,
+    0.025054959265485566
+   ]
+  }
+ },
+ "verdicts": {}
+}
