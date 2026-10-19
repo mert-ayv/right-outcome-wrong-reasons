@@ -109,13 +109,15 @@ def main():
     ap.add_argument("--records", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--n_boot", type=int, default=10000)
+    ap.add_argument("--base", default="base", help="tag of the reference run, e.g. h2-base")
+    ap.add_argument("--only", default="", help="compare only runs whose tag starts with this prefix")
     args = ap.parse_args()
-    base = load(os.path.join(args.records, "base.jsonl"))
+    base = load(os.path.join(args.records, f"{args.base}.jsonl"))
     out = {"base": {"acc": sum(map(correct, base.values())) / len(base), **trunc_stats(base, 0), **trunc_stats(base, 50)},
            "runs": {}, "verdicts": {}}
     for path in sorted(glob.glob(os.path.join(args.records, "*.jsonl"))):
         tag = os.path.basename(path)[:-6]
-        if tag == "base":
+        if tag == args.base or not tag.startswith(args.only):
             continue
         out["runs"][tag] = compare(base, load(path), args.n_boot)
         if tag.startswith("grpo") and tag.endswith("step60"):
